@@ -1,8 +1,5 @@
 import iup, os, marshal
 
-
-##тестируем гит
-
 proc select_file(parent_dlg: PIhandle; is_open: cint): cint =
   var config: PIhandle = cast[PIhandle](iup.getAttribute(parent_dlg, "CONFIG"))
   var canvas: PIhandle = iup.getDialogChild(parent_dlg, "CANVAS")
