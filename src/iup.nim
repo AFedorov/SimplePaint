@@ -179,6 +179,8 @@ proc unmap*(ih: PIhandle) {.
 
 proc setAttribute*(ih: PIhandle, name, value: cstring) {.
   importc: "IupSetAttribute", cdecl, dynlib: dllname.}
+proc setStrAttribute*(ih: PIhandle, name, value: cstring) {.
+  importc: "IupSetStrAttribute", cdecl, dynlib: dllname.}
 proc storeAttribute*(ih: PIhandle, name, value: cstring) {.
   importc: "IupStoreAttribute", cdecl, dynlib: dllname.}
 proc setAttributes*(ih: PIhandle, str: cstring): PIhandle {.

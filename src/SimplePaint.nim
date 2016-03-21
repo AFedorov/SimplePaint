@@ -9,10 +9,10 @@ proc select_file(parent_dlg: PIhandle; is_open: cint): cint =
     iup.setAttribute(filedlg, "DIALOGTYPE", "OPEN")
   else:
     iup.setAttribute(filedlg, "DIALOGTYPE", "SAVE")
-    # iup.setStrAttribute(filedlg, "FILE", iup.getAttribute(canvas, "FILENAME"))
+    iup.setStrAttribute(filedlg, "FILE", iup.getAttribute(canvas, "FILENAME"))
   iup.setAttribute(filedlg, "EXTFILTER",
                   "Image Files|*.bmp;*.jpg;*.png;*.tif;*.tga|All Files|*.*|")
-  #IupSetStrAttribute(filedlg, "DIRECTORY", dir)
+  iup.setStrAttribute(filedlg, "DIRECTORY", dir)
   iup.setAttributeHandle(filedlg, "PARENTDIALOG", parent_dlg)
   iup.popup(filedlg, IUP_CENTERPARENT, IUP_CENTERPARENT)
   if iup.getInt(filedlg, "STATUS") != - 1:
@@ -42,7 +42,7 @@ proc save_check(ih: PIhandle): cint =
     else:
       return 1
 
-proc item_open_action_cb(item_open: PIhandle): cint =                 #int item_open_action_cb(Ihandle* item_open)      
+proc item_open_action_cb(item_open: PIhandle): cint {.cdecl.} =       #int item_open_action_cb(Ihandle* item_open)
   if save_check(item_open) != 0: return IUP_DEFAULT                   #{                                                
   return select_file(iup.getDialog(item_open), 1)                     #  if (!save_check(item_open))                    
                                                                       #    return IUP_DEFAULT;                          
@@ -97,7 +97,7 @@ proc create_main_dialog*(config: PIhandle): PIhandle =
                                                                       # 
   var item_open = iup.item("&Open...\tCtrl+O", nil)                   #   item_open = IupItem("&Open...\tCtrl+O", NULL);
   iup.setAttribute(item_open, "IMAGE", "IUP_FileOpen")                #   IupSetAttribute(item_open, "IMAGE", "IUP_FileOpen");
-  iup.setCallback(item_open, "ACTION", (Icallback)item_open_action_cb)#  IupSetCallback(item_open, "ACTION", (Icallback)item_open_action_cb);
+  discard iup.setCallback(item_open, "ACTION", (Icallback)item_open_action_cb)#  IupSetCallback(item_open, "ACTION", (Icallback)item_open_action_cb);
   var btn_open = iup.button(nil, nil)                                 #   btn_open = IupButton(NULL, NULL);
   iup.setAttribute(btn_open, "IMAGE", "IUP_FileOpen")                 #   IupSetAttribute(btn_open, "IMAGE", "IUP_FileOpen");
   iup.setAttribute(btn_open, "FLAT", "Yes")                           #   IupSetAttribute(btn_open, "FLAT", "Yes");
