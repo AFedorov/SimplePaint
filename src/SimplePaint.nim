@@ -24,16 +24,6 @@ proc select_file(parent_dlg: PIhandle; is_open: cint): cint =
   iup.destroy(filedlg)
   return IUP_DEFAULT
 
-proc item_open_action_cb(item_open: PIhandle): cint =
-  #  if not save_check(item_open): return IUP_DEFAULT
-  return select_file(iup.getDialog(item_open), 1)
-
-proc check_new_file*(dlg: PIhandle) =
-  echo "check_new_file"
-
-proc open_file*(ih: PIhandle; filename: cstring) =
-  echo "open_file"
-
 proc save_file*(canvas: PIhandle) =
   var filename: cstring = iup.getAttribute(canvas, "FILENAME")
 #  var image: ptr imImage = cast[ptr imImage](IupGetAttribute(canvas, "IMAGE"))
@@ -52,6 +42,19 @@ proc save_check(ih: PIhandle): cint =
     else:
       return 1
 
+proc item_open_action_cb(item_open: PIhandle): cint =                 #int item_open_action_cb(Ihandle* item_open)      
+  if save_check(item_open) != 0: return IUP_DEFAULT                   #{                                                
+  return select_file(iup.getDialog(item_open), 1)                     #  if (!save_check(item_open))                    
+                                                                      #    return IUP_DEFAULT;                          
+                                                                      #                                                 
+                                                                      #  return select_file(IupGetDialog(item_open), 1);
+                                                                      #}                                                
+
+proc check_new_file*(dlg: PIhandle) =
+  echo "check_new_file"
+
+proc open_file*(ih: PIhandle; filename: cstring) =
+  echo "open_file"
 
 proc config_recent_cb*(ih: PIhandle): cint =
   if save_check(ih) == 1:
@@ -94,11 +97,11 @@ proc create_main_dialog*(config: PIhandle): PIhandle =
                                                                       # 
   var item_open = iup.item("&Open...\tCtrl+O", nil)                   #   item_open = IupItem("&Open...\tCtrl+O", NULL);
   iup.setAttribute(item_open, "IMAGE", "IUP_FileOpen")                #   IupSetAttribute(item_open, "IMAGE", "IUP_FileOpen");
-  # iup.setCallback(item_open, "ACTION", (Icallback)item_open_action_cb)#  IupSetCallback(item_open, "ACTION", (Icallback)item_open_action_cb);
+  iup.setCallback(item_open, "ACTION", (Icallback)item_open_action_cb)#  IupSetCallback(item_open, "ACTION", (Icallback)item_open_action_cb);
   var btn_open = iup.button(nil, nil)                                 #   btn_open = IupButton(NULL, NULL);
   iup.setAttribute(btn_open, "IMAGE", "IUP_FileOpen")                 #   IupSetAttribute(btn_open, "IMAGE", "IUP_FileOpen");
   iup.setAttribute(btn_open, "FLAT", "Yes")                           #   IupSetAttribute(btn_open, "FLAT", "Yes");
-# todo iup.setCallback(btn_open, "ACTION", (Icallback)item_open_action_cb) #   IupSetCallback(btn_open, "ACTION", (Icallback)item_open_action_cb);
+  iup.setCallback(btn_open, "ACTION", (Icallback)item_open_action_cb) #   IupSetCallback(btn_open, "ACTION", (Icallback)item_open_action_cb);
   iup.setAttribute(btn_open, "TIP", "Open (Ctrl+O)")                  #   IupSetAttribute(btn_open, "TIP", "Open (Ctrl+O)");
   iup.setAttribute(btn_open, "CANFOCUS", "No")                        #   IupSetAttribute(btn_open, "CANFOCUS", "No");
                                                                       # 
