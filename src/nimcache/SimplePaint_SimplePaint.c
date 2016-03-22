@@ -95,13 +95,13 @@ N_NIMCALL(void, savefile_208017)(Ihandle94209* canvas);
 N_NIMCALL(int, savecheck_208022)(Ihandle94209* ih);
 #line 259 "c:\\nim\\lib\\system\\sysstr.nim"
 N_NIMCALL(NimStringDesc*, nimIntToStr)(NI x);
-#line 53 "y:\\nimcode\\simplepaint\\src\\simplepaint.nim"
+#line 54 "y:\\nimcode\\simplepaint\\src\\simplepaint.nim"
 N_CDECL(int, itemopenactioncb_208030)(Ihandle94209* itemopen);
-#line 61 "y:\\nimcode\\simplepaint\\src\\simplepaint.nim"
+#line 62 "y:\\nimcode\\simplepaint\\src\\simplepaint.nim"
 N_NIMCALL(void, checknewfile_208034)(Ihandle94209* dlg);
-#line 64 "y:\\nimcode\\simplepaint\\src\\simplepaint.nim"
+#line 65 "y:\\nimcode\\simplepaint\\src\\simplepaint.nim"
 N_NIMCALL(void, openfile_208039)(Ihandle94209* ih, NCSTRING filename);
-#line 67 "y:\\nimcode\\simplepaint\\src\\simplepaint.nim"
+#line 68 "y:\\nimcode\\simplepaint\\src\\simplepaint.nim"
 N_NIMCALL(int, configrecentcb_208045)(Ihandle94209* ih);
 #line 244 "c:\\nim\\lib\\pure\\marshal.nim"
 N_NIMCALL(NimStringDesc*, HEX24HEX24_208091)(Ihandle94209* x);
@@ -109,7 +109,7 @@ N_NIMCALL(NimStringDesc*, HEX24HEX24_208091)(Ihandle94209* x);
 static N_INLINE(Any145500, toany_208101)(Ihandle94209** x);
 #line 122 "c:\\nim\\lib\\core\\typeinfo.nim"
 static N_INLINE(Any145500, newany_146236)(void* value, TNimType* rawtype);
-#line 73 "y:\\nimcode\\simplepaint\\src\\simplepaint.nim"
+#line 74 "y:\\nimcode\\simplepaint\\src\\simplepaint.nim"
 N_NIMCALL(Ihandle94209*, createmaindialog_208051)(Ihandle94209* config);
 #line 1267 "c:\\nim\\lib\\pure\\os.nim"
 N_NIMCALL(NI, nosparamCount)(void);
@@ -304,34 +304,34 @@ N_NIMCALL(int, savecheck_208022)(Ihandle94209* ih) {
 {	result = 0;
 #line 33 "y:\\nimcode\\simplepaint\\src\\simplepaint.nim"
 	nimln(33, "simplepaint.nim");	canvas = Dl_94384(ih, "CANVAS");
-#line 34 "y:\\nimcode\\simplepaint\\src\\simplepaint.nim"
-	nimln(34, "simplepaint.nim");
-#line 34 "y:\\nimcode\\simplepaint\\src\\simplepaint.nim"
+#line 35 "y:\\nimcode\\simplepaint\\src\\simplepaint.nim"
+	nimln(35, "simplepaint.nim");
+#line 35 "y:\\nimcode\\simplepaint\\src\\simplepaint.nim"
 
-#line 34 "y:\\nimcode\\simplepaint\\src\\simplepaint.nim"
+#line 35 "y:\\nimcode\\simplepaint\\src\\simplepaint.nim"
 	LOC1 = 0;	LOC1 = Dl_94440(canvas, "DIRTY");	LOC2 = 0;	LOC2 = nimIntToStr(((NI) (LOC1)));	printf("%s\015\012", LOC2? (LOC2)->data:"nil");	fflush(stdout);
-#line 35 "y:\\nimcode\\simplepaint\\src\\simplepaint.nim"
-	nimln(35, "simplepaint.nim");	{		int LOC5;		int LOC8;
-#line 35 "y:\\nimcode\\simplepaint\\src\\simplepaint.nim"
+#line 36 "y:\\nimcode\\simplepaint\\src\\simplepaint.nim"
+	nimln(36, "simplepaint.nim");	{		int LOC5;		int LOC8;
+#line 36 "y:\\nimcode\\simplepaint\\src\\simplepaint.nim"
 
-#line 35 "y:\\nimcode\\simplepaint\\src\\simplepaint.nim"
+#line 36 "y:\\nimcode\\simplepaint\\src\\simplepaint.nim"
 		LOC5 = 0;		LOC5 = Dl_94440(canvas, "DIRTY");		if (!(LOC5 == ((NI32) 1))) goto LA6;
 
-#line 36 "y:\\nimcode\\simplepaint\\src\\simplepaint.nim"
-		nimln(36, "simplepaint.nim");
-#line 36 "y:\\nimcode\\simplepaint\\src\\simplepaint.nim"
+#line 37 "y:\\nimcode\\simplepaint\\src\\simplepaint.nim"
+		nimln(37, "simplepaint.nim");
+#line 37 "y:\\nimcode\\simplepaint\\src\\simplepaint.nim"
 		LOC8 = 0;		LOC8 = Dl_94235("Warning", "File not saved! Save it now?", "Yes", "No", "Cancel");		switch (LOC8) {
 		case ((NI) 1):
 		{
-#line 38 "y:\\nimcode\\simplepaint\\src\\simplepaint.nim"
-			nimln(38, "simplepaint.nim");			savefile_208017(canvas);
+#line 39 "y:\\nimcode\\simplepaint\\src\\simplepaint.nim"
+			nimln(39, "simplepaint.nim");			savefile_208017(canvas);
 		}
 		break;
 		case ((NI) 3):
 		{
-#line 42 "y:\\nimcode\\simplepaint\\src\\simplepaint.nim"
-			nimln(42, "simplepaint.nim");
-#line 42 "y:\\nimcode\\simplepaint\\src\\simplepaint.nim"
+#line 43 "y:\\nimcode\\simplepaint\\src\\simplepaint.nim"
+			nimln(43, "simplepaint.nim");
+#line 43 "y:\\nimcode\\simplepaint\\src\\simplepaint.nim"
 			result = ((int) 0);			goto BeforeRet;
 		}
 		break;
@@ -342,81 +342,81 @@ N_NIMCALL(int, savecheck_208022)(Ihandle94209* ih) {
 	}
 	LA6: ;
 
-#line 45 "y:\\nimcode\\simplepaint\\src\\simplepaint.nim"
-	nimln(45, "simplepaint.nim");
-#line 45 "y:\\nimcode\\simplepaint\\src\\simplepaint.nim"
+#line 46 "y:\\nimcode\\simplepaint\\src\\simplepaint.nim"
+	nimln(46, "simplepaint.nim");
+#line 46 "y:\\nimcode\\simplepaint\\src\\simplepaint.nim"
 	result = ((int) 1);	goto BeforeRet;
 	}BeforeRet: ;
 	popFrame();	return result;}
 
 
-#line 53 "y:\\nimcode\\simplepaint\\src\\simplepaint.nim"
+#line 54 "y:\\nimcode\\simplepaint\\src\\simplepaint.nim"
 N_CDECL(int, itemopenactioncb_208030)(Ihandle94209* itemopen) {
 	int result;
 	Ihandle94209* LOC6;	nimfr("item_open_action_cb", "simplepaint.nim")
 {	result = 0;
-#line 54 "y:\\nimcode\\simplepaint\\src\\simplepaint.nim"
-	nimln(54, "simplepaint.nim");	{		int LOC3;
+#line 55 "y:\\nimcode\\simplepaint\\src\\simplepaint.nim"
+	nimln(55, "simplepaint.nim");	{		int LOC3;
 #line 349 "c:\\nim\\lib\\system.nim"
 		nimln(349, "system.nim");
 #line 349 "c:\\nim\\lib\\system.nim"
 
-#line 54 "y:\\nimcode\\simplepaint\\src\\simplepaint.nim"
-		nimln(54, "simplepaint.nim");		LOC3 = 0;		LOC3 = savecheck_208022(itemopen);		if (!!((LOC3 == ((NI32) 0)))) goto LA4;
+#line 55 "y:\\nimcode\\simplepaint\\src\\simplepaint.nim"
+		nimln(55, "simplepaint.nim");		LOC3 = 0;		LOC3 = savecheck_208022(itemopen);		if (!!((LOC3 == ((NI32) 1)))) goto LA4;
 
-#line 54 "y:\\nimcode\\simplepaint\\src\\simplepaint.nim"
+#line 55 "y:\\nimcode\\simplepaint\\src\\simplepaint.nim"
 
-#line 54 "y:\\nimcode\\simplepaint\\src\\simplepaint.nim"
+#line 55 "y:\\nimcode\\simplepaint\\src\\simplepaint.nim"
 		result = ((int) -2);		goto BeforeRet;
 	}
 	LA4: ;
 
-#line 55 "y:\\nimcode\\simplepaint\\src\\simplepaint.nim"
-	nimln(55, "simplepaint.nim");
-#line 55 "y:\\nimcode\\simplepaint\\src\\simplepaint.nim"
+#line 56 "y:\\nimcode\\simplepaint\\src\\simplepaint.nim"
+	nimln(56, "simplepaint.nim");
+#line 56 "y:\\nimcode\\simplepaint\\src\\simplepaint.nim"
 
-#line 55 "y:\\nimcode\\simplepaint\\src\\simplepaint.nim"
+#line 56 "y:\\nimcode\\simplepaint\\src\\simplepaint.nim"
 	LOC6 = 0;	LOC6 = Dl_94381(itemopen);	result = selectfile_208001(LOC6, ((int) 1));	goto BeforeRet;
 	}BeforeRet: ;
 	popFrame();	return result;}
 
 
-#line 61 "y:\\nimcode\\simplepaint\\src\\simplepaint.nim"
+#line 62 "y:\\nimcode\\simplepaint\\src\\simplepaint.nim"
 N_NIMCALL(void, checknewfile_208034)(Ihandle94209* dlg) {
 	nimfr("check_new_file", "simplepaint.nim")
 
-#line 62 "y:\\nimcode\\simplepaint\\src\\simplepaint.nim"
-	nimln(62, "simplepaint.nim");	printf("%s\015\012", ((NimStringDesc*) &TMP1102)? (((NimStringDesc*) &TMP1102))->data:"nil");	fflush(stdout);	popFrame();}
+#line 63 "y:\\nimcode\\simplepaint\\src\\simplepaint.nim"
+	nimln(63, "simplepaint.nim");	printf("%s\015\012", ((NimStringDesc*) &TMP1102)? (((NimStringDesc*) &TMP1102))->data:"nil");	fflush(stdout);	popFrame();}
 
 
-#line 64 "y:\\nimcode\\simplepaint\\src\\simplepaint.nim"
+#line 65 "y:\\nimcode\\simplepaint\\src\\simplepaint.nim"
 N_NIMCALL(void, openfile_208039)(Ihandle94209* ih, NCSTRING filename) {
 	nimfr("open_file", "simplepaint.nim")
 
-#line 65 "y:\\nimcode\\simplepaint\\src\\simplepaint.nim"
-	nimln(65, "simplepaint.nim");	printf("%s\015\012", ((NimStringDesc*) &TMP1103)? (((NimStringDesc*) &TMP1103))->data:"nil");	fflush(stdout);	popFrame();}
+#line 66 "y:\\nimcode\\simplepaint\\src\\simplepaint.nim"
+	nimln(66, "simplepaint.nim");	printf("%s\015\012", ((NimStringDesc*) &TMP1103)? (((NimStringDesc*) &TMP1103))->data:"nil");	fflush(stdout);	popFrame();}
 
 
-#line 67 "y:\\nimcode\\simplepaint\\src\\simplepaint.nim"
+#line 68 "y:\\nimcode\\simplepaint\\src\\simplepaint.nim"
 N_NIMCALL(int, configrecentcb_208045)(Ihandle94209* ih) {
 	int result;
 	nimfr("config_recent_cb", "simplepaint.nim")
 {	result = 0;
-#line 68 "y:\\nimcode\\simplepaint\\src\\simplepaint.nim"
-	nimln(68, "simplepaint.nim");	{		int LOC3;		NCSTRING filename;
-
-#line 68 "y:\\nimcode\\simplepaint\\src\\simplepaint.nim"
-
-#line 68 "y:\\nimcode\\simplepaint\\src\\simplepaint.nim"
-		LOC3 = 0;		LOC3 = savecheck_208022(ih);		if (!(LOC3 == ((NI32) 1))) goto LA4;
+#line 69 "y:\\nimcode\\simplepaint\\src\\simplepaint.nim"
+	nimln(69, "simplepaint.nim");	{		int LOC3;		NCSTRING filename;
 
 #line 69 "y:\\nimcode\\simplepaint\\src\\simplepaint.nim"
-		nimln(69, "simplepaint.nim");		filename = Dl_94433(ih, "TITLE");	}
+
+#line 69 "y:\\nimcode\\simplepaint\\src\\simplepaint.nim"
+		LOC3 = 0;		LOC3 = savecheck_208022(ih);		if (!(LOC3 == ((NI32) 1))) goto LA4;
+
+#line 70 "y:\\nimcode\\simplepaint\\src\\simplepaint.nim"
+		nimln(70, "simplepaint.nim");		filename = Dl_94433(ih, "TITLE");	}
 	LA4: ;
 
-#line 71 "y:\\nimcode\\simplepaint\\src\\simplepaint.nim"
-	nimln(71, "simplepaint.nim");
-#line 71 "y:\\nimcode\\simplepaint\\src\\simplepaint.nim"
+#line 72 "y:\\nimcode\\simplepaint\\src\\simplepaint.nim"
+	nimln(72, "simplepaint.nim");
+#line 72 "y:\\nimcode\\simplepaint\\src\\simplepaint.nim"
 	result = ((int) -2);	goto BeforeRet;
 	}BeforeRet: ;
 	popFrame();	return result;}
@@ -446,7 +446,7 @@ static N_INLINE(Any145500, toany_208101)(Ihandle94209** x) {
 	result = newany_146236(((void*) (x)), ((TNimType*) ((&NTI94211))));	popFrame();	return result;}
 
 
-#line 73 "y:\\nimcode\\simplepaint\\src\\simplepaint.nim"
+#line 74 "y:\\nimcode\\simplepaint\\src\\simplepaint.nim"
 N_NIMCALL(Ihandle94209*, createmaindialog_208051)(Ihandle94209* config) {
 	Ihandle94209* result;
 	Ihandle94209* canvas;
@@ -484,265 +484,265 @@ N_NIMCALL(Ihandle94209*, createmaindialog_208051)(Ihandle94209* config) {
 	Ihandle94209* dlg;
 	NimStringDesc* LOC18;	nimfr("create_main_dialog", "simplepaint.nim")
 {	result = 0;
-#line 84 "y:\\nimcode\\simplepaint\\src\\simplepaint.nim"
-	nimln(84, "simplepaint.nim");	canvas = Dl_96352(NIM_NIL);
 #line 85 "y:\\nimcode\\simplepaint\\src\\simplepaint.nim"
-	nimln(85, "simplepaint.nim");	Dl_94414(canvas, "NAME", "CANVAS");
-
+	nimln(85, "simplepaint.nim");	canvas = Dl_96352(NIM_NIL);
 #line 86 "y:\\nimcode\\simplepaint\\src\\simplepaint.nim"
-	nimln(86, "simplepaint.nim");	Dl_94414(canvas, "DIRTY", "NO");
+	nimln(86, "simplepaint.nim");	Dl_94414(canvas, "NAME", "CANVAS");
 
 #line 87 "y:\\nimcode\\simplepaint\\src\\simplepaint.nim"
-	nimln(87, "simplepaint.nim");	Dl_94414(canvas, "BUFFER", "DOUBLE");
+	nimln(87, "simplepaint.nim");	Dl_94414(canvas, "DIRTY", "NO");
 
-#line 91 "y:\\nimcode\\simplepaint\\src\\simplepaint.nim"
-	nimln(91, "simplepaint.nim");	statusbar = Dl_94670("(0, 0) = [0   0   0]");
+#line 88 "y:\\nimcode\\simplepaint\\src\\simplepaint.nim"
+	nimln(88, "simplepaint.nim");	Dl_94414(canvas, "BUFFER", "DOUBLE");
+
 #line 92 "y:\\nimcode\\simplepaint\\src\\simplepaint.nim"
-	nimln(92, "simplepaint.nim");	Dl_94414(statusbar, "NAME", "STATUSBAR");
-
+	nimln(92, "simplepaint.nim");	statusbar = Dl_94670("(0, 0) = [0   0   0]");
 #line 93 "y:\\nimcode\\simplepaint\\src\\simplepaint.nim"
-	nimln(93, "simplepaint.nim");	Dl_94414(statusbar, "EXPAND", "HORIZONTAL");
+	nimln(93, "simplepaint.nim");	Dl_94414(statusbar, "NAME", "STATUSBAR");
 
 #line 94 "y:\\nimcode\\simplepaint\\src\\simplepaint.nim"
-	nimln(94, "simplepaint.nim");	Dl_94414(statusbar, "PADDING", "10x5");
+	nimln(94, "simplepaint.nim");	Dl_94414(statusbar, "EXPAND", "HORIZONTAL");
 
-#line 96 "y:\\nimcode\\simplepaint\\src\\simplepaint.nim"
-	nimln(96, "simplepaint.nim");	itemnew = Dl_94637("&New\011Ctrl+N", NIM_NIL);
+#line 95 "y:\\nimcode\\simplepaint\\src\\simplepaint.nim"
+	nimln(95, "simplepaint.nim");	Dl_94414(statusbar, "PADDING", "10x5");
+
 #line 97 "y:\\nimcode\\simplepaint\\src\\simplepaint.nim"
-	nimln(97, "simplepaint.nim");	Dl_94414(itemnew, "IMAGE", "IUP_FileNew");
+	nimln(97, "simplepaint.nim");	itemnew = Dl_94637("&New\011Ctrl+N", NIM_NIL);
+#line 98 "y:\\nimcode\\simplepaint\\src\\simplepaint.nim"
+	nimln(98, "simplepaint.nim");	Dl_94414(itemnew, "IMAGE", "IUP_FileNew");
 
-#line 99 "y:\\nimcode\\simplepaint\\src\\simplepaint.nim"
-	nimln(99, "simplepaint.nim");	btnnew = Dl_94654(NIM_NIL, NIM_NIL);
 #line 100 "y:\\nimcode\\simplepaint\\src\\simplepaint.nim"
-	nimln(100, "simplepaint.nim");	Dl_94414(btnnew, "IMAGE", "IUP_FileNew");
-
+	nimln(100, "simplepaint.nim");	btnnew = Dl_94654(NIM_NIL, NIM_NIL);
 #line 101 "y:\\nimcode\\simplepaint\\src\\simplepaint.nim"
-	nimln(101, "simplepaint.nim");	Dl_94414(btnnew, "FLAT", "Yes");
+	nimln(101, "simplepaint.nim");	Dl_94414(btnnew, "IMAGE", "IUP_FileNew");
 
-#line 103 "y:\\nimcode\\simplepaint\\src\\simplepaint.nim"
-	nimln(103, "simplepaint.nim");	Dl_94414(btnnew, "TIP", "New (Ctrl+N)");
+#line 102 "y:\\nimcode\\simplepaint\\src\\simplepaint.nim"
+	nimln(102, "simplepaint.nim");	Dl_94414(btnnew, "FLAT", "Yes");
 
 #line 104 "y:\\nimcode\\simplepaint\\src\\simplepaint.nim"
-	nimln(104, "simplepaint.nim");	Dl_94414(btnnew, "CANFOCUS", "No");
+	nimln(104, "simplepaint.nim");	Dl_94414(btnnew, "TIP", "New (Ctrl+N)");
 
-#line 106 "y:\\nimcode\\simplepaint\\src\\simplepaint.nim"
-	nimln(106, "simplepaint.nim");	itemopen = Dl_94637("&Open...\011Ctrl+O", NIM_NIL);
+#line 105 "y:\\nimcode\\simplepaint\\src\\simplepaint.nim"
+	nimln(105, "simplepaint.nim");	Dl_94414(btnnew, "CANFOCUS", "No");
+
 #line 107 "y:\\nimcode\\simplepaint\\src\\simplepaint.nim"
-	nimln(107, "simplepaint.nim");	Dl_94414(itemopen, "IMAGE", "IUP_FileOpen");
+	nimln(107, "simplepaint.nim");	itemopen = Dl_94637("&Open...\011Ctrl+O", NIM_NIL);
+#line 108 "y:\\nimcode\\simplepaint\\src\\simplepaint.nim"
+	nimln(108, "simplepaint.nim");	Dl_94414(itemopen, "IMAGE", "IUP_FileOpen");
 
-#line 108 "y:\\nimcode\\simplepaint\\src\\simplepaint.nim"
-	nimln(108, "simplepaint.nim");
-#line 108 "y:\\nimcode\\simplepaint\\src\\simplepaint.nim"
-	LOC1 = 0;	LOC1 = Dl_94500(itemopen, "ACTION", itemopenactioncb_208030);
 #line 109 "y:\\nimcode\\simplepaint\\src\\simplepaint.nim"
-	nimln(109, "simplepaint.nim");	btnopen = Dl_94654(NIM_NIL, NIM_NIL);
+	nimln(109, "simplepaint.nim");
+#line 109 "y:\\nimcode\\simplepaint\\src\\simplepaint.nim"
+	LOC1 = 0;	LOC1 = Dl_94500(itemopen, "ACTION", itemopenactioncb_208030);
 #line 110 "y:\\nimcode\\simplepaint\\src\\simplepaint.nim"
-	nimln(110, "simplepaint.nim");	Dl_94414(btnopen, "IMAGE", "IUP_FileOpen");
-
+	nimln(110, "simplepaint.nim");	btnopen = Dl_94654(NIM_NIL, NIM_NIL);
 #line 111 "y:\\nimcode\\simplepaint\\src\\simplepaint.nim"
-	nimln(111, "simplepaint.nim");	Dl_94414(btnopen, "FLAT", "Yes");
+	nimln(111, "simplepaint.nim");	Dl_94414(btnopen, "IMAGE", "IUP_FileOpen");
 
 #line 112 "y:\\nimcode\\simplepaint\\src\\simplepaint.nim"
-	nimln(112, "simplepaint.nim");	LOC2 = 0;	LOC2 = Dl_94500(btnopen, "ACTION", itemopenactioncb_208030);
+	nimln(112, "simplepaint.nim");	Dl_94414(btnopen, "FLAT", "Yes");
+
 #line 113 "y:\\nimcode\\simplepaint\\src\\simplepaint.nim"
-	nimln(113, "simplepaint.nim");	Dl_94414(btnopen, "TIP", "Open (Ctrl+O)");
-
+	nimln(113, "simplepaint.nim");	LOC2 = 0;	LOC2 = Dl_94500(btnopen, "ACTION", itemopenactioncb_208030);
 #line 114 "y:\\nimcode\\simplepaint\\src\\simplepaint.nim"
-	nimln(114, "simplepaint.nim");	Dl_94414(btnopen, "CANFOCUS", "No");
+	nimln(114, "simplepaint.nim");	Dl_94414(btnopen, "TIP", "Open (Ctrl+O)");
 
-#line 116 "y:\\nimcode\\simplepaint\\src\\simplepaint.nim"
-	nimln(116, "simplepaint.nim");	itemsave = Dl_94637("&Save\011Ctrl+S", NIM_NIL);
+#line 115 "y:\\nimcode\\simplepaint\\src\\simplepaint.nim"
+	nimln(115, "simplepaint.nim");	Dl_94414(btnopen, "CANFOCUS", "No");
+
 #line 117 "y:\\nimcode\\simplepaint\\src\\simplepaint.nim"
-	nimln(117, "simplepaint.nim");	Dl_94414(itemsave, "NAME", "ITEM_SAVE");
-
+	nimln(117, "simplepaint.nim");	itemsave = Dl_94637("&Save\011Ctrl+S", NIM_NIL);
 #line 118 "y:\\nimcode\\simplepaint\\src\\simplepaint.nim"
-	nimln(118, "simplepaint.nim");	Dl_94414(itemsave, "IMAGE", "IUP_FileSave");
+	nimln(118, "simplepaint.nim");	Dl_94414(itemsave, "NAME", "ITEM_SAVE");
 
-#line 120 "y:\\nimcode\\simplepaint\\src\\simplepaint.nim"
-	nimln(120, "simplepaint.nim");	btnsave = Dl_94654(NIM_NIL, NIM_NIL);
+#line 119 "y:\\nimcode\\simplepaint\\src\\simplepaint.nim"
+	nimln(119, "simplepaint.nim");	Dl_94414(itemsave, "IMAGE", "IUP_FileSave");
+
 #line 121 "y:\\nimcode\\simplepaint\\src\\simplepaint.nim"
-	nimln(121, "simplepaint.nim");	Dl_94414(btnsave, "IMAGE", "IUP_FileSave");
-
+	nimln(121, "simplepaint.nim");	btnsave = Dl_94654(NIM_NIL, NIM_NIL);
 #line 122 "y:\\nimcode\\simplepaint\\src\\simplepaint.nim"
-	nimln(122, "simplepaint.nim");	Dl_94414(btnsave, "FLAT", "Yes");
+	nimln(122, "simplepaint.nim");	Dl_94414(btnsave, "IMAGE", "IUP_FileSave");
 
-#line 124 "y:\\nimcode\\simplepaint\\src\\simplepaint.nim"
-	nimln(124, "simplepaint.nim");	Dl_94414(btnsave, "TIP", "Save (Ctrl+S)");
+#line 123 "y:\\nimcode\\simplepaint\\src\\simplepaint.nim"
+	nimln(123, "simplepaint.nim");	Dl_94414(btnsave, "FLAT", "Yes");
 
 #line 125 "y:\\nimcode\\simplepaint\\src\\simplepaint.nim"
-	nimln(125, "simplepaint.nim");	Dl_94414(btnsave, "CANFOCUS", "No");
+	nimln(125, "simplepaint.nim");	Dl_94414(btnsave, "TIP", "Save (Ctrl+S)");
 
-#line 127 "y:\\nimcode\\simplepaint\\src\\simplepaint.nim"
-	nimln(127, "simplepaint.nim");	itemsaveas = Dl_94637("Save &As...", NIM_NIL);
+#line 126 "y:\\nimcode\\simplepaint\\src\\simplepaint.nim"
+	nimln(126, "simplepaint.nim");	Dl_94414(btnsave, "CANFOCUS", "No");
+
 #line 128 "y:\\nimcode\\simplepaint\\src\\simplepaint.nim"
-	nimln(128, "simplepaint.nim");	Dl_94414(itemsaveas, "NAME", "ITEM_SAVEAS");
+	nimln(128, "simplepaint.nim");	itemsaveas = Dl_94637("Save &As...", NIM_NIL);
+#line 129 "y:\\nimcode\\simplepaint\\src\\simplepaint.nim"
+	nimln(129, "simplepaint.nim");	Dl_94414(itemsaveas, "NAME", "ITEM_SAVEAS");
 
-#line 131 "y:\\nimcode\\simplepaint\\src\\simplepaint.nim"
-	nimln(131, "simplepaint.nim");	itemrevert = Dl_94637("&Revert", NIM_NIL);
 #line 132 "y:\\nimcode\\simplepaint\\src\\simplepaint.nim"
-	nimln(132, "simplepaint.nim");	Dl_94414(itemrevert, "NAME", "ITEM_REVERT");
+	nimln(132, "simplepaint.nim");	itemrevert = Dl_94637("&Revert", NIM_NIL);
+#line 133 "y:\\nimcode\\simplepaint\\src\\simplepaint.nim"
+	nimln(133, "simplepaint.nim");	Dl_94414(itemrevert, "NAME", "ITEM_REVERT");
 
-#line 135 "y:\\nimcode\\simplepaint\\src\\simplepaint.nim"
-	nimln(135, "simplepaint.nim");	itemexit = Dl_94637("E&xit", NIM_NIL);
-#line 138 "y:\\nimcode\\simplepaint\\src\\simplepaint.nim"
-	nimln(138, "simplepaint.nim");	itemcopy = Dl_94637("&Copy\011Ctrl+C", NIM_NIL);
+#line 136 "y:\\nimcode\\simplepaint\\src\\simplepaint.nim"
+	nimln(136, "simplepaint.nim");	itemexit = Dl_94637("E&xit", NIM_NIL);
 #line 139 "y:\\nimcode\\simplepaint\\src\\simplepaint.nim"
-	nimln(139, "simplepaint.nim");	Dl_94414(itemcopy, "NAME", "ITEM_COPY");
-
+	nimln(139, "simplepaint.nim");	itemcopy = Dl_94637("&Copy\011Ctrl+C", NIM_NIL);
 #line 140 "y:\\nimcode\\simplepaint\\src\\simplepaint.nim"
-	nimln(140, "simplepaint.nim");	Dl_94414(itemcopy, "IMAGE", "IUP_EditCopy");
+	nimln(140, "simplepaint.nim");	Dl_94414(itemcopy, "NAME", "ITEM_COPY");
 
-#line 142 "y:\\nimcode\\simplepaint\\src\\simplepaint.nim"
-	nimln(142, "simplepaint.nim");	btncopy = Dl_94654(NIM_NIL, NIM_NIL);
+#line 141 "y:\\nimcode\\simplepaint\\src\\simplepaint.nim"
+	nimln(141, "simplepaint.nim");	Dl_94414(itemcopy, "IMAGE", "IUP_EditCopy");
+
 #line 143 "y:\\nimcode\\simplepaint\\src\\simplepaint.nim"
-	nimln(143, "simplepaint.nim");	Dl_94414(btncopy, "IMAGE", "IUP_EditCopy");
-
+	nimln(143, "simplepaint.nim");	btncopy = Dl_94654(NIM_NIL, NIM_NIL);
 #line 144 "y:\\nimcode\\simplepaint\\src\\simplepaint.nim"
-	nimln(144, "simplepaint.nim");	Dl_94414(btncopy, "FLAT", "Yes");
+	nimln(144, "simplepaint.nim");	Dl_94414(btncopy, "IMAGE", "IUP_EditCopy");
 
-#line 146 "y:\\nimcode\\simplepaint\\src\\simplepaint.nim"
-	nimln(146, "simplepaint.nim");	Dl_94414(btncopy, "TIP", "Copy (Ctrl+C)");
+#line 145 "y:\\nimcode\\simplepaint\\src\\simplepaint.nim"
+	nimln(145, "simplepaint.nim");	Dl_94414(btncopy, "FLAT", "Yes");
 
 #line 147 "y:\\nimcode\\simplepaint\\src\\simplepaint.nim"
-	nimln(147, "simplepaint.nim");	Dl_94414(btncopy, "CANFOCUS", "No");
+	nimln(147, "simplepaint.nim");	Dl_94414(btncopy, "TIP", "Copy (Ctrl+C)");
 
-#line 149 "y:\\nimcode\\simplepaint\\src\\simplepaint.nim"
-	nimln(149, "simplepaint.nim");	itempaste = Dl_94637("&Paste\011Ctrl+V", NIM_NIL);
+#line 148 "y:\\nimcode\\simplepaint\\src\\simplepaint.nim"
+	nimln(148, "simplepaint.nim");	Dl_94414(btncopy, "CANFOCUS", "No");
+
 #line 150 "y:\\nimcode\\simplepaint\\src\\simplepaint.nim"
-	nimln(150, "simplepaint.nim");	Dl_94414(itempaste, "NAME", "ITEM_PASTE");
-
+	nimln(150, "simplepaint.nim");	itempaste = Dl_94637("&Paste\011Ctrl+V", NIM_NIL);
 #line 151 "y:\\nimcode\\simplepaint\\src\\simplepaint.nim"
-	nimln(151, "simplepaint.nim");	Dl_94414(itempaste, "IMAGE", "IUP_EditPaste");
+	nimln(151, "simplepaint.nim");	Dl_94414(itempaste, "NAME", "ITEM_PASTE");
 
-#line 153 "y:\\nimcode\\simplepaint\\src\\simplepaint.nim"
-	nimln(153, "simplepaint.nim");	btnpaste = Dl_94654(NIM_NIL, NIM_NIL);
+#line 152 "y:\\nimcode\\simplepaint\\src\\simplepaint.nim"
+	nimln(152, "simplepaint.nim");	Dl_94414(itempaste, "IMAGE", "IUP_EditPaste");
+
 #line 154 "y:\\nimcode\\simplepaint\\src\\simplepaint.nim"
-	nimln(154, "simplepaint.nim");	Dl_94414(btnpaste, "IMAGE", "IUP_EditPaste");
-
+	nimln(154, "simplepaint.nim");	btnpaste = Dl_94654(NIM_NIL, NIM_NIL);
 #line 155 "y:\\nimcode\\simplepaint\\src\\simplepaint.nim"
-	nimln(155, "simplepaint.nim");	Dl_94414(btnpaste, "FLAT", "Yes");
+	nimln(155, "simplepaint.nim");	Dl_94414(btnpaste, "IMAGE", "IUP_EditPaste");
 
-#line 157 "y:\\nimcode\\simplepaint\\src\\simplepaint.nim"
-	nimln(157, "simplepaint.nim");	Dl_94414(btnpaste, "TIP", "Paste (Ctrl+V)");
+#line 156 "y:\\nimcode\\simplepaint\\src\\simplepaint.nim"
+	nimln(156, "simplepaint.nim");	Dl_94414(btnpaste, "FLAT", "Yes");
 
 #line 158 "y:\\nimcode\\simplepaint\\src\\simplepaint.nim"
-	nimln(158, "simplepaint.nim");	Dl_94414(btnpaste, "CANFOCUS", "No");
+	nimln(158, "simplepaint.nim");	Dl_94414(btnpaste, "TIP", "Paste (Ctrl+V)");
 
-#line 160 "y:\\nimcode\\simplepaint\\src\\simplepaint.nim"
-	nimln(160, "simplepaint.nim");	itembackground = Dl_94637("&Background...", NIM_NIL);
-#line 163 "y:\\nimcode\\simplepaint\\src\\simplepaint.nim"
-	nimln(163, "simplepaint.nim");	itemtoolbar = Dl_94637("&Toobar", NIM_NIL);
-#line 165 "y:\\nimcode\\simplepaint\\src\\simplepaint.nim"
-	nimln(165, "simplepaint.nim");	Dl_94414(itemtoolbar, "VALUE", "ON");
+#line 159 "y:\\nimcode\\simplepaint\\src\\simplepaint.nim"
+	nimln(159, "simplepaint.nim");	Dl_94414(btnpaste, "CANFOCUS", "No");
 
-#line 167 "y:\\nimcode\\simplepaint\\src\\simplepaint.nim"
-	nimln(167, "simplepaint.nim");	itemstatusbar = Dl_94637("&Statusbar", NIM_NIL);
-#line 169 "y:\\nimcode\\simplepaint\\src\\simplepaint.nim"
-	nimln(169, "simplepaint.nim");	Dl_94414(itemstatusbar, "VALUE", "ON");
+#line 161 "y:\\nimcode\\simplepaint\\src\\simplepaint.nim"
+	nimln(161, "simplepaint.nim");	itembackground = Dl_94637("&Background...", NIM_NIL);
+#line 164 "y:\\nimcode\\simplepaint\\src\\simplepaint.nim"
+	nimln(164, "simplepaint.nim");	itemtoolbar = Dl_94637("&Toobar", NIM_NIL);
+#line 166 "y:\\nimcode\\simplepaint\\src\\simplepaint.nim"
+	nimln(166, "simplepaint.nim");	Dl_94414(itemtoolbar, "VALUE", "ON");
 
-#line 171 "y:\\nimcode\\simplepaint\\src\\simplepaint.nim"
-	nimln(171, "simplepaint.nim");	itemhelp = Dl_94637("&Help...", NIM_NIL);
-#line 174 "y:\\nimcode\\simplepaint\\src\\simplepaint.nim"
-	nimln(174, "simplepaint.nim");	itemabout = Dl_94637("&About...", NIM_NIL);
-#line 177 "y:\\nimcode\\simplepaint\\src\\simplepaint.nim"
-	nimln(177, "simplepaint.nim");	recentmenu = Dl_94647(NIM_NIL);
-#line 179 "y:\\nimcode\\simplepaint\\src\\simplepaint.nim"
-	nimln(179, "simplepaint.nim");
-#line 185 "y:\\nimcode\\simplepaint\\src\\simplepaint.nim"
-	nimln(185, "simplepaint.nim");	LOC3 = 0;	LOC3 = Dl_94645();
+#line 168 "y:\\nimcode\\simplepaint\\src\\simplepaint.nim"
+	nimln(168, "simplepaint.nim");	itemstatusbar = Dl_94637("&Statusbar", NIM_NIL);
+#line 170 "y:\\nimcode\\simplepaint\\src\\simplepaint.nim"
+	nimln(170, "simplepaint.nim");	Dl_94414(itemstatusbar, "VALUE", "ON");
+
+#line 172 "y:\\nimcode\\simplepaint\\src\\simplepaint.nim"
+	nimln(172, "simplepaint.nim");	itemhelp = Dl_94637("&Help...", NIM_NIL);
+#line 175 "y:\\nimcode\\simplepaint\\src\\simplepaint.nim"
+	nimln(175, "simplepaint.nim");	itemabout = Dl_94637("&About...", NIM_NIL);
+#line 178 "y:\\nimcode\\simplepaint\\src\\simplepaint.nim"
+	nimln(178, "simplepaint.nim");	recentmenu = Dl_94647(NIM_NIL);
+#line 180 "y:\\nimcode\\simplepaint\\src\\simplepaint.nim"
+	nimln(180, "simplepaint.nim");
 #line 186 "y:\\nimcode\\simplepaint\\src\\simplepaint.nim"
-	nimln(186, "simplepaint.nim");	LOC4 = 0;	LOC4 = Dl_94641("Recent &Files", recentmenu);	filemenu = Dl_94647(itemnew, itemopen, itemsave, itemsaveas, itemrevert, LOC3, LOC4, itemexit, NIM_NIL);
-#line 189 "y:\\nimcode\\simplepaint\\src\\simplepaint.nim"
-	nimln(189, "simplepaint.nim");	editmenu = Dl_94647(itemcopy, itempaste, NIM_NIL);
-#line 193 "y:\\nimcode\\simplepaint\\src\\simplepaint.nim"
-	nimln(193, "simplepaint.nim");
-#line 195 "y:\\nimcode\\simplepaint\\src\\simplepaint.nim"
-	nimln(195, "simplepaint.nim");	LOC5 = 0;	LOC5 = Dl_94645();	viewmenu = Dl_94647(itembackground, LOC5, itemtoolbar, itemstatusbar, NIM_NIL);
-#line 199 "y:\\nimcode\\simplepaint\\src\\simplepaint.nim"
-	nimln(199, "simplepaint.nim");	helpmenu = Dl_94647(itemhelp, itemabout, NIM_NIL);
-#line 207 "y:\\nimcode\\simplepaint\\src\\simplepaint.nim"
-	nimln(207, "simplepaint.nim");	submenufile = Dl_94641("&File", filemenu);
+	nimln(186, "simplepaint.nim");	LOC3 = 0;	LOC3 = Dl_94645();
+#line 187 "y:\\nimcode\\simplepaint\\src\\simplepaint.nim"
+	nimln(187, "simplepaint.nim");	LOC4 = 0;	LOC4 = Dl_94641("Recent &Files", recentmenu);	filemenu = Dl_94647(itemnew, itemopen, itemsave, itemsaveas, itemrevert, LOC3, LOC4, itemexit, NIM_NIL);
+#line 190 "y:\\nimcode\\simplepaint\\src\\simplepaint.nim"
+	nimln(190, "simplepaint.nim");	editmenu = Dl_94647(itemcopy, itempaste, NIM_NIL);
+#line 194 "y:\\nimcode\\simplepaint\\src\\simplepaint.nim"
+	nimln(194, "simplepaint.nim");
+#line 196 "y:\\nimcode\\simplepaint\\src\\simplepaint.nim"
+	nimln(196, "simplepaint.nim");	LOC5 = 0;	LOC5 = Dl_94645();	viewmenu = Dl_94647(itembackground, LOC5, itemtoolbar, itemstatusbar, NIM_NIL);
+#line 200 "y:\\nimcode\\simplepaint\\src\\simplepaint.nim"
+	nimln(200, "simplepaint.nim");	helpmenu = Dl_94647(itemhelp, itemabout, NIM_NIL);
 #line 208 "y:\\nimcode\\simplepaint\\src\\simplepaint.nim"
-	nimln(208, "simplepaint.nim");	submenuedit = Dl_94641("&Edit", editmenu);
+	nimln(208, "simplepaint.nim");	submenufile = Dl_94641("&File", filemenu);
 #line 209 "y:\\nimcode\\simplepaint\\src\\simplepaint.nim"
-	nimln(209, "simplepaint.nim");	submenuview = Dl_94641("&View", viewmenu);
+	nimln(209, "simplepaint.nim");	submenuedit = Dl_94641("&Edit", editmenu);
 #line 210 "y:\\nimcode\\simplepaint\\src\\simplepaint.nim"
-	nimln(210, "simplepaint.nim");	submenuhelp = Dl_94641("&Help", helpmenu);
-#line 212 "y:\\nimcode\\simplepaint\\src\\simplepaint.nim"
-	nimln(212, "simplepaint.nim");	menu = Dl_94647(submenufile, submenuedit, submenuview, submenuhelp, NIM_NIL);
-#line 219 "y:\\nimcode\\simplepaint\\src\\simplepaint.nim"
-	nimln(219, "simplepaint.nim");
-#line 223 "y:\\nimcode\\simplepaint\\src\\simplepaint.nim"
-	nimln(223, "simplepaint.nim");
-#line 223 "y:\\nimcode\\simplepaint\\src\\simplepaint.nim"
+	nimln(210, "simplepaint.nim");	submenuview = Dl_94641("&View", viewmenu);
+#line 211 "y:\\nimcode\\simplepaint\\src\\simplepaint.nim"
+	nimln(211, "simplepaint.nim");	submenuhelp = Dl_94641("&Help", helpmenu);
+#line 213 "y:\\nimcode\\simplepaint\\src\\simplepaint.nim"
+	nimln(213, "simplepaint.nim");	menu = Dl_94647(submenufile, submenuedit, submenuview, submenuhelp, NIM_NIL);
+#line 220 "y:\\nimcode\\simplepaint\\src\\simplepaint.nim"
+	nimln(220, "simplepaint.nim");
+#line 224 "y:\\nimcode\\simplepaint\\src\\simplepaint.nim"
+	nimln(224, "simplepaint.nim");
+#line 224 "y:\\nimcode\\simplepaint\\src\\simplepaint.nim"
 	LOC6 = 0;	LOC6 = Dl_94670(NIM_NIL);	LOC7 = 0;	LOC7 = Dl_94429(LOC6, "SEPARATOR=VERTICAL");	toolbar = Dl_94595(btnnew, btnopen, btnsave, LOC7, btncopy, btnpaste, NIM_NIL);
-#line 227 "y:\\nimcode\\simplepaint\\src\\simplepaint.nim"
-	nimln(227, "simplepaint.nim");	Dl_94414(toolbar, "MARGIN", "5x5");
-
 #line 228 "y:\\nimcode\\simplepaint\\src\\simplepaint.nim"
-	nimln(228, "simplepaint.nim");	Dl_94414(toolbar, "GAP", "2");
+	nimln(228, "simplepaint.nim");	Dl_94414(toolbar, "MARGIN", "5x5");
 
-#line 230 "y:\\nimcode\\simplepaint\\src\\simplepaint.nim"
-	nimln(230, "simplepaint.nim");	vbox = Dl_94581(toolbar, canvas, statusbar, NIM_NIL);
-#line 236 "y:\\nimcode\\simplepaint\\src\\simplepaint.nim"
-	nimln(236, "simplepaint.nim");	dlg = Dl_94665(vbox);
+#line 229 "y:\\nimcode\\simplepaint\\src\\simplepaint.nim"
+	nimln(229, "simplepaint.nim");	Dl_94414(toolbar, "GAP", "2");
+
+#line 231 "y:\\nimcode\\simplepaint\\src\\simplepaint.nim"
+	nimln(231, "simplepaint.nim");	vbox = Dl_94581(toolbar, canvas, statusbar, NIM_NIL);
 #line 237 "y:\\nimcode\\simplepaint\\src\\simplepaint.nim"
-	nimln(237, "simplepaint.nim");	Dl_94537(dlg, "MENU", menu);
-
+	nimln(237, "simplepaint.nim");	dlg = Dl_94665(vbox);
 #line 238 "y:\\nimcode\\simplepaint\\src\\simplepaint.nim"
-	nimln(238, "simplepaint.nim");	Dl_94414(dlg, "SIZE", "HALFxHALF");
+	nimln(238, "simplepaint.nim");	Dl_94537(dlg, "MENU", menu);
 
-#line 249 "y:\\nimcode\\simplepaint\\src\\simplepaint.nim"
-	nimln(249, "simplepaint.nim");	Dl_94537(NIM_NIL, "PARENTDIALOG", dlg);
+#line 239 "y:\\nimcode\\simplepaint\\src\\simplepaint.nim"
+	nimln(239, "simplepaint.nim");	Dl_94414(dlg, "SIZE", "HALFxHALF");
 
-#line 255 "y:\\nimcode\\simplepaint\\src\\simplepaint.nim"
-	nimln(255, "simplepaint.nim");	{		int LOC10;
+#line 250 "y:\\nimcode\\simplepaint\\src\\simplepaint.nim"
+	nimln(250, "simplepaint.nim");	Dl_94537(NIM_NIL, "PARENTDIALOG", dlg);
+
+#line 256 "y:\\nimcode\\simplepaint\\src\\simplepaint.nim"
+	nimln(256, "simplepaint.nim");	{		int LOC10;
 #line 349 "c:\\nim\\lib\\system.nim"
 		nimln(349, "system.nim");
 #line 349 "c:\\nim\\lib\\system.nim"
 
-#line 255 "y:\\nimcode\\simplepaint\\src\\simplepaint.nim"
-		nimln(255, "simplepaint.nim");		LOC10 = 0;		LOC10 = Dl_96473(config, "MainWindow", "Toolbar", ((int) 1));		if (!!((LOC10 == ((NI32) 1)))) goto LA11;
-
 #line 256 "y:\\nimcode\\simplepaint\\src\\simplepaint.nim"
-		nimln(256, "simplepaint.nim");		Dl_94414(itemtoolbar, "VALUE", "OFF");
+		nimln(256, "simplepaint.nim");		LOC10 = 0;		LOC10 = Dl_96473(config, "MainWindow", "Toolbar", ((int) 1));		if (!!((LOC10 == ((NI32) 1)))) goto LA11;
 
 #line 257 "y:\\nimcode\\simplepaint\\src\\simplepaint.nim"
-		nimln(257, "simplepaint.nim");		Dl_94414(toolbar, "FLOATING", "YES");
+		nimln(257, "simplepaint.nim");		Dl_94414(itemtoolbar, "VALUE", "OFF");
 
 #line 258 "y:\\nimcode\\simplepaint\\src\\simplepaint.nim"
-		nimln(258, "simplepaint.nim");		Dl_94414(toolbar, "VISIBLE", "NO");
+		nimln(258, "simplepaint.nim");		Dl_94414(toolbar, "FLOATING", "YES");
+
+#line 259 "y:\\nimcode\\simplepaint\\src\\simplepaint.nim"
+		nimln(259, "simplepaint.nim");		Dl_94414(toolbar, "VISIBLE", "NO");
 	}
 	LA11: ;
 
-#line 263 "y:\\nimcode\\simplepaint\\src\\simplepaint.nim"
-	nimln(263, "simplepaint.nim");	{		int LOC15;
+#line 264 "y:\\nimcode\\simplepaint\\src\\simplepaint.nim"
+	nimln(264, "simplepaint.nim");	{		int LOC15;
 #line 349 "c:\\nim\\lib\\system.nim"
 		nimln(349, "system.nim");
 #line 349 "c:\\nim\\lib\\system.nim"
 
-#line 263 "y:\\nimcode\\simplepaint\\src\\simplepaint.nim"
-		nimln(263, "simplepaint.nim");		LOC15 = 0;		LOC15 = Dl_96473(config, "MainWindow", "Statusbar", ((int) 1));		if (!!((LOC15 == ((NI32) 1)))) goto LA16;
-
 #line 264 "y:\\nimcode\\simplepaint\\src\\simplepaint.nim"
-		nimln(264, "simplepaint.nim");		Dl_94414(itemstatusbar, "VALUE", "OFF");
+		nimln(264, "simplepaint.nim");		LOC15 = 0;		LOC15 = Dl_96473(config, "MainWindow", "Statusbar", ((int) 1));		if (!!((LOC15 == ((NI32) 1)))) goto LA16;
 
 #line 265 "y:\\nimcode\\simplepaint\\src\\simplepaint.nim"
-		nimln(265, "simplepaint.nim");		Dl_94414(statusbar, "FLOATING", "YES");
+		nimln(265, "simplepaint.nim");		Dl_94414(itemstatusbar, "VALUE", "OFF");
 
 #line 266 "y:\\nimcode\\simplepaint\\src\\simplepaint.nim"
-		nimln(266, "simplepaint.nim");		Dl_94414(statusbar, "VISIBLE", "NO");
+		nimln(266, "simplepaint.nim");		Dl_94414(statusbar, "FLOATING", "YES");
+
+#line 267 "y:\\nimcode\\simplepaint\\src\\simplepaint.nim"
+		nimln(267, "simplepaint.nim");		Dl_94414(statusbar, "VISIBLE", "NO");
 	}
 	LA16: ;
 
-#line 271 "y:\\nimcode\\simplepaint\\src\\simplepaint.nim"
-	nimln(271, "simplepaint.nim");
-#line 271 "y:\\nimcode\\simplepaint\\src\\simplepaint.nim"
+#line 272 "y:\\nimcode\\simplepaint\\src\\simplepaint.nim"
+	nimln(272, "simplepaint.nim");
+#line 272 "y:\\nimcode\\simplepaint\\src\\simplepaint.nim"
 	LOC18 = 0;	LOC18 = HEX24HEX24_208091(config);	Dl_94414(dlg, "CONFIG", LOC18->data);
 
-#line 273 "y:\\nimcode\\simplepaint\\src\\simplepaint.nim"
-	nimln(273, "simplepaint.nim");
-#line 273 "y:\\nimcode\\simplepaint\\src\\simplepaint.nim"
+#line 274 "y:\\nimcode\\simplepaint\\src\\simplepaint.nim"
+	nimln(274, "simplepaint.nim");
+#line 274 "y:\\nimcode\\simplepaint\\src\\simplepaint.nim"
 	result = dlg;	goto BeforeRet;
 	}BeforeRet: ;
 	popFrame();	return result;}
@@ -829,53 +829,53 @@ int main(int argc, char** args, char** env) {
 NIM_EXTERNC N_NOINLINE(void, simplepaintInit000)(void) {
 	int LOC1;	int LOC2;	int LOC9;	nimfr("simplepaint", "simplepaint.nim")
 
-#line 281 "y:\\nimcode\\simplepaint\\src\\simplepaint.nim"
-	nimln(281, "simplepaint.nim");
-#line 281 "y:\\nimcode\\simplepaint\\src\\simplepaint.nim"
-	LOC1 = 0;	LOC1 = Dl_94289(NIM_NIL, NIM_NIL);
 #line 282 "y:\\nimcode\\simplepaint\\src\\simplepaint.nim"
-	nimln(282, "simplepaint.nim");	Dl_96350();
-
+	nimln(282, "simplepaint.nim");
+#line 282 "y:\\nimcode\\simplepaint\\src\\simplepaint.nim"
+	LOC1 = 0;	LOC1 = Dl_94289(NIM_NIL, NIM_NIL);
 #line 283 "y:\\nimcode\\simplepaint\\src\\simplepaint.nim"
-	nimln(283, "simplepaint.nim");	Dl_94297();
+	nimln(283, "simplepaint.nim");	Dl_96350();
 
-#line 285 "y:\\nimcode\\simplepaint\\src\\simplepaint.nim"
-	nimln(285, "simplepaint.nim");	config_208122 = Dl_96380();
+#line 284 "y:\\nimcode\\simplepaint\\src\\simplepaint.nim"
+	nimln(284, "simplepaint.nim");	Dl_94297();
+
 #line 286 "y:\\nimcode\\simplepaint\\src\\simplepaint.nim"
-	nimln(286, "simplepaint.nim");	Dl_94414(config_208122, "APP_NAME", "simple_paint");
+	nimln(286, "simplepaint.nim");	config_208122 = Dl_96380();
+#line 287 "y:\\nimcode\\simplepaint\\src\\simplepaint.nim"
+	nimln(287, "simplepaint.nim");	Dl_94414(config_208122, "APP_NAME", "simple_paint");
 
-#line 287 "y:\\nimcode\\simplepaint\\src\\simplepaint.nim"
-	nimln(287, "simplepaint.nim");
-#line 287 "y:\\nimcode\\simplepaint\\src\\simplepaint.nim"
+#line 288 "y:\\nimcode\\simplepaint\\src\\simplepaint.nim"
+	nimln(288, "simplepaint.nim");
+#line 288 "y:\\nimcode\\simplepaint\\src\\simplepaint.nim"
 	LOC2 = 0;	LOC2 = Dl_96382(config_208122);
-#line 289 "y:\\nimcode\\simplepaint\\src\\simplepaint.nim"
-	nimln(289, "simplepaint.nim");	dlg_208123 = createmaindialog_208051(config_208122);
-#line 292 "y:\\nimcode\\simplepaint\\src\\simplepaint.nim"
-	nimln(292, "simplepaint.nim");	Dl_96509(config_208122, dlg_208123, "MainWindow");
+#line 290 "y:\\nimcode\\simplepaint\\src\\simplepaint.nim"
+	nimln(290, "simplepaint.nim");	dlg_208123 = createmaindialog_208051(config_208122);
+#line 293 "y:\\nimcode\\simplepaint\\src\\simplepaint.nim"
+	nimln(293, "simplepaint.nim");	Dl_96509(config_208122, dlg_208123, "MainWindow");
 
-#line 295 "y:\\nimcode\\simplepaint\\src\\simplepaint.nim"
-	nimln(295, "simplepaint.nim");	{		NI LOC5;		NimStringDesc* LOC8;
+#line 296 "y:\\nimcode\\simplepaint\\src\\simplepaint.nim"
+	nimln(296, "simplepaint.nim");	{		NI LOC5;		NimStringDesc* LOC8;
 #line 357 "c:\\nim\\lib\\system.nim"
 		nimln(357, "system.nim");
-#line 295 "y:\\nimcode\\simplepaint\\src\\simplepaint.nim"
-		nimln(295, "simplepaint.nim");		LOC5 = 0;		LOC5 = nosparamCount();		if (!(((NI) 0) < LOC5)) goto LA6;
+#line 296 "y:\\nimcode\\simplepaint\\src\\simplepaint.nim"
+		nimln(296, "simplepaint.nim");		LOC5 = 0;		LOC5 = nosparamCount();		if (!(((NI) 0) < LOC5)) goto LA6;
 
-#line 295 "y:\\nimcode\\simplepaint\\src\\simplepaint.nim"
+#line 296 "y:\\nimcode\\simplepaint\\src\\simplepaint.nim"
 
-#line 295 "y:\\nimcode\\simplepaint\\src\\simplepaint.nim"
+#line 296 "y:\\nimcode\\simplepaint\\src\\simplepaint.nim"
 		LOC8 = 0;		LOC8 = nosparamStr(((NI) 1));		openfile_208039(dlg_208123, LOC8->data);
 	}
 	LA6: ;
 
-#line 302 "y:\\nimcode\\simplepaint\\src\\simplepaint.nim"
-	nimln(302, "simplepaint.nim");	checknewfile_208034(dlg_208123);
+#line 303 "y:\\nimcode\\simplepaint\\src\\simplepaint.nim"
+	nimln(303, "simplepaint.nim");	checknewfile_208034(dlg_208123);
 
-#line 304 "y:\\nimcode\\simplepaint\\src\\simplepaint.nim"
-	nimln(304, "simplepaint.nim");
-#line 304 "y:\\nimcode\\simplepaint\\src\\simplepaint.nim"
+#line 305 "y:\\nimcode\\simplepaint\\src\\simplepaint.nim"
+	nimln(305, "simplepaint.nim");
+#line 305 "y:\\nimcode\\simplepaint\\src\\simplepaint.nim"
 	LOC9 = 0;	LOC9 = Dl_94299();
-#line 306 "y:\\nimcode\\simplepaint\\src\\simplepaint.nim"
-	nimln(306, "simplepaint.nim");	Dl_94295();
+#line 307 "y:\\nimcode\\simplepaint\\src\\simplepaint.nim"
+	nimln(307, "simplepaint.nim");	Dl_94295();
 	popFrame();}
 
 NIM_EXTERNC N_NOINLINE(void, simplepaintDatInit000)(void) {
