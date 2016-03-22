@@ -31,7 +31,7 @@ proc save_file*(canvas: PIhandle) =
 #-------------------------------------------------------------------------------------------------------------------------------------------
 proc save_check(ih: PIhandle): cint =                                                 #int save_check(Ihandle* ih)                                                            
   var canvas: PIhandle = iup.getDialogChild(ih, "CANVAS")                             #{                                                                                      
-#удаллить  echo iup.getInt(canvas, "DIRTY")
+#РЈРґР°Р»РёС‚СЊ echo iup.getInt(canvas, "DIRTY")
   if (iup.getInt(canvas, "DIRTY") == 1):                                             #  Ihandle* canvas = IupGetDialogChild(ih, "CANVAS");                                   
     case iup.alarm("Warning", "File not saved! Save it now?", "Yes", "No", "Cancel")  #  if (IupGetInt(canvas, "DIRTY"))                                                      
     of 1:                      ## # save the changes and continue                     #  {                                                                                    
