@@ -28,19 +28,27 @@ proc save_file*(canvas: PIhandle) =
   var filename: cstring = iup.getAttribute(canvas, "FILENAME")
 #  var image: ptr imImage = cast[ptr imImage](IupGetAttribute(canvas, "IMAGE"))
 #  if write_file(filename, image): IupSetAttribute(canvas, "DIRTY", "NO")
-
-proc save_check(ih: PIhandle): cint =
-  var canvas: PIhandle = iup.getDialogChild(ih, "CANVAS")
-  if (iup.getInt(canvas, "DIRTY") == -1):
-    case iup.alarm("Warning", "File not saved! Save it now?", "Yes", "No", "Cancel")
-    of 1:                      ## # save the changes and continue 
-      save_file(canvas)
-    of 2:                      ## # ignore the changes and continue 
-      nil
-    of 3:                      ## # cancel 
-      return 0
-    else:
-      return 1
+#-------------------------------------------------------------------------------------------------------------------------------------------
+proc save_check(ih: PIhandle): cint =                                                 #int save_check(Ihandle* ih)                                                            
+  var canvas: PIhandle = iup.getDialogChild(ih, "CANVAS")                             #{                                                                                      
+#удаллить  echo iup.getInt(canvas, "DIRTY")
+  if (iup.getInt(canvas, "DIRTY") == 1):                                             #  Ihandle* canvas = IupGetDialogChild(ih, "CANVAS");                                   
+    case iup.alarm("Warning", "File not saved! Save it now?", "Yes", "No", "Cancel")  #  if (IupGetInt(canvas, "DIRTY"))                                                      
+    of 1:                      ## # save the changes and continue                     #  {                                                                                    
+      save_file(canvas)                                                               #    switch (IupAlarm("Warning", "File not saved! Save it now?", "Yes", "No", "Cancel"))
+    #of 2:                      ## # ignore the changes and continue                   #    {                                                                                  
+    #  discard                                                                             #    case 1:  /* save the changes and continue */                                       
+    of 3:                      ## # cancel                                            #      save_file(canvas);                                                               
+      return 0                                                                        #      break;                                                                           
+    else:                                                                             #    case 2:  /* ignore the changes and continue */
+      discard                                                                         #      break;                                      
+  return 1                                                                            #    case 3:  /* cancel */                                                              
+                                                                                      #      return 0;                                                                        
+                                                                                      #    }                                                                                  
+                                                                                      #  }                                                                                    
+                                                                                      #  return 1;                                                                            
+                                                                                      #}                                                                                      
+#-------------------------------------------------------------------------------------------------------------------------------------------
 
 proc item_open_action_cb(item_open: PIhandle): cint {.cdecl.} =       #int item_open_action_cb(Ihandle* item_open)
   if save_check(item_open) != 0: return IUP_DEFAULT                   #{                                                
