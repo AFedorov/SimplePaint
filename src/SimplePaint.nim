@@ -33,11 +33,11 @@ proc save_check(ih: PIhandle): cint =                                           
   var canvas: PIhandle = iup.getDialogChild(ih, "CANVAS")                             #{                                                                                      
   #STUB iup.setAttribute(canvas, "DIRTY", "YES");
   echo iup.getInt(canvas, "DIRTY")
-  if (iup.getInt(canvas, "DIRTY") == 1):                                             #  Ihandle* canvas = IupGetDialogChild(ih, "CANVAS");                                   
+  if (iup.getInt(canvas, "DIRTY") == 1):                                              #  Ihandle* canvas = IupGetDialogChild(ih, "CANVAS");                                   
     case iup.alarm("Warning", "File not saved! Save it now?", "Yes", "No", "Cancel")  #  if (IupGetInt(canvas, "DIRTY"))                                                      
     of 1:                      ## # save the changes and continue                     #  {                                                                                    
       save_file(canvas)                                                               #    switch (IupAlarm("Warning", "File not saved! Save it now?", "Yes", "No", "Cancel"))
-    #of 2:                      ## # ignore the changes and continue                   #    {                                                                                  
+    #of 2:                      ## # ignore the changes and continue                  #    {                                                                                  
     #  discard                                                                             #    case 1:  /* save the changes and continue */                                       
     of 3:                      ## # cancel                                            #      save_file(canvas);                                                               
       return 0                                                                        #      break;                                                                           
