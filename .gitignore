@@ -1,4 +1,4 @@
-/.vscode
-/src/nimcache
+.vscode
+src/nimcache
 simplepaint.exe
 tasks.json
