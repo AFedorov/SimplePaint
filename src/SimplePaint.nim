@@ -62,13 +62,13 @@ proc save_check(ih: PIhandle): bool =                                           
                                                                                       #}                                                                                      
 #-------------------------------------------------------------------------------------------------------------------------------------------
 
-proc item_open_action_cb(item_open: PIhandle): cint {.cdecl.} =       #int item_open_action_cb(Ihandle* item_open)
-  if not save_check(item_open): return IUP_DEFAULT                   #{                                                
-  return select_file(iup.getDialog(item_open), 1)                     #  if (!save_check(item_open))                    
-                                                                      #    return IUP_DEFAULT;                          
-                                                                      #                                                 
-                                                                      #  return select_file(IupGetDialog(item_open), 1);
-                                                                      #}                                                
+proc item_open_action_cb(item_open: PIhandle): cint {.cdecl.} =                       #int item_open_action_cb(Ihandle* item_open)
+  if not save_check(item_open): return IUP_DEFAULT                                    #{                                                
+  return select_file(iup.getDialog(item_open), 1)                                     #  if (!save_check(item_open))                    
+                                                                                      #    return IUP_DEFAULT;                          
+                                                                                      #                                                 
+                                                                                      #  return select_file(IupGetDialog(item_open), 1);
+                                                                                      #}                                                
 
 proc check_new_file*(dlg: PIhandle) =
   echo "check_new_file"
@@ -83,7 +83,7 @@ proc config_recent_cb*(ih: PIhandle): cint =
   return IUP_DEFAULT
 
 proc create_main_dialog*(config: PIhandle): PIhandle =
-#proc create_main_dialog(config: PIhandle): PIhandle =                 # Ihandle* create_main_dialog(Ihandle *config)
+#proc create_main_dialog(config: PIhandle): PIhandle =                                # Ihandle* create_main_dialog(Ihandle *config)
                                                                       # {
                                                                       #   Ihandle *dlg, *vbox, *canvas, *menu;
                                                                       #   Ihandle *sub_menu_file, *file_menu, *item_exit, *item_new, *item_open, *item_save, *item_saveas, *item_revert;
