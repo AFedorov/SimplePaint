@@ -33,7 +33,7 @@ proc save_check(ih: PIhandle): bool =                                           
   var canvas: PIhandle = iup.getDialogChild(ih, "CANVAS")                             #{                                                                                      
 #   STUB iup.setAttribute(canvas, "DIRTY", "YES");
 #   echo iup.getInt(canvas, "DIRTY")
-  result = tue
+  result = true
   if (iup.getInt(canvas, "DIRTY") == 1):                                              #  Ihandle* canvas = IupGetDialogChild(ih, "CANVAS");                                   
     case iup.alarm("Warning", "File not saved! Save it now?", "Yes", "No", "Cancel")  #  if (IupGetInt(canvas, "DIRTY"))                                                      
     of 1:                      ## # save the changes and continue                     #  {                                                                                    
@@ -53,7 +53,7 @@ proc save_check(ih: PIhandle): bool =                                           
 #-------------------------------------------------------------------------------------------------------------------------------------------
 
 proc item_open_action_cb(item_open: PIhandle): cint {.cdecl.} =       #int item_open_action_cb(Ihandle* item_open)
-  if !save_check(item_open): return IUP_DEFAULT                   #{                                                
+  if not save_check(item_open): return IUP_DEFAULT                   #{                                                
   return select_file(iup.getDialog(item_open), 1)                     #  if (!save_check(item_open))                    
                                                                       #    return IUP_DEFAULT;                          
                                                                       #                                                 
