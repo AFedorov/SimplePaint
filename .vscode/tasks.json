@@ -17,10 +17,10 @@
 
     "tasks": [
         {
-        "taskName": "Build Type Script",
+        "taskName": "Debug",
         "suppressTaskName": true,
         "isBuildCommand": true,
-        "args": ["tsc -p ."]
+        "args": ["nim", "c", "--linedir:on", "--debuginfo", "--out:bin/${fileBasename}", "src/${fileBasename}"]
         },
         {
         "taskName": "Open Browser",
