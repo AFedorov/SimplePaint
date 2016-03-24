@@ -1,29 +1,39 @@
 import iup, os, marshal
 
-proc select_file(parent_dlg: PIhandle; is_open: cint): cint =
-  var config: PIhandle = cast[PIhandle](iup.getAttribute(parent_dlg, "CONFIG"))
-  var canvas: PIhandle = iup.getDialogChild(parent_dlg, "CANVAS")
-  var dir: cstring = iup.configGetVariableStr(config, "MainWindow", "LastDirectory")
-  var filedlg: PIhandle = iup.fileDlg()
-  if is_open == 1:
-    iup.setAttribute(filedlg, "DIALOGTYPE", "OPEN")
-  else:
-    iup.setAttribute(filedlg, "DIALOGTYPE", "SAVE")
-    iup.setStrAttribute(filedlg, "FILE", iup.getAttribute(canvas, "FILENAME"))
-  iup.setAttribute(filedlg, "EXTFILTER",
-                  "Image Files|*.bmp;*.jpg;*.png;*.tif;*.tga|All Files|*.*|")
-  iup.setStrAttribute(filedlg, "DIRECTORY", dir)
-  iup.setAttributeHandle(filedlg, "PARENTDIALOG", parent_dlg)
-  iup.popup(filedlg, IUP_CENTERPARENT, IUP_CENTERPARENT)
-  if iup.getInt(filedlg, "STATUS") != - 1:
-    var filename: cstring = iup.getAttribute(filedlg, "VALUE")
-    #  if is_open == 1: open_file(parent_dlg, filename)
-    #  else: saveas_file(canvas, filename)
-    dir = iup.getAttribute(filedlg, "DIRECTORY")
-    iup.configSetVariableStr(config, "MainWindow", "LastDirectory", dir)
-  iup.destroy(filedlg)
-  return IUP_DEFAULT
-
+proc select_file(parent_dlg: PIhandle; is_open: cint): cint =                         #int select_file(Ihandle* parent_dlg, int is_open)                                                   
+  var config: PIhandle = cast[PIhandle](iup.getAttribute(parent_dlg, "CONFIG"))       #{                                                                                                   
+  var canvas: PIhandle = iup.getDialogChild(parent_dlg, "CANVAS")                     #  Ihandle* config = (Ihandle*)IupGetAttribute(parent_dlg, "CONFIG");                                
+  var dir: cstring = iup.configGetVariableStr(config, "MainWindow", "LastDirectory")  #  Ihandle* canvas = IupGetDialogChild(parent_dlg, "CANVAS");                                        
+  var filedlg: PIhandle = iup.fileDlg()                                               #  const char* dir = IupConfigGetVariableStr(config, "MainWindow", "LastDirectory");                 
+  if is_open == 1:                                                                    #                                                                                                    
+    iup.setAttribute(filedlg, "DIALOGTYPE", "OPEN")                                   #  Ihandle* filedlg = IupFileDlg();                                                                  
+  else:                                                                               #  if (is_open)                                                                                      
+    iup.setAttribute(filedlg, "DIALOGTYPE", "SAVE")                                   #    IupSetAttribute(filedlg, "DIALOGTYPE", "OPEN");                                                 
+    iup.setStrAttribute(filedlg, "FILE", iup.getAttribute(canvas, "FILENAME"))        #  else                                                                                              
+  iup.setAttribute(filedlg, "EXTFILTER",                                              #  {                                                                                                 
+                  "Image Files|*.bmp;*.jpg;*.png;*.tif;*.tga|All Files|*.*|")         #    IupSetAttribute(filedlg, "DIALOGTYPE", "SAVE");                                                 
+  iup.setStrAttribute(filedlg, "DIRECTORY", dir)                                      #    IupSetStrAttribute(filedlg, "FILE", IupGetAttribute(canvas, "FILENAME"));                       
+  iup.setAttributeHandle(filedlg, "PARENTDIALOG", parent_dlg)                         #  }                                                                                                 
+  iup.popup(filedlg, IUP_CENTERPARENT, IUP_CENTERPARENT)                              #  IupSetAttribute(filedlg, "EXTFILTER", "Image Files|*.bmp;*.jpg;*.png;*.tif;*.tga|All Files|*.*|");
+  if iup.getInt(filedlg, "STATUS") != - 1:                                            #  IupSetStrAttribute(filedlg, "DIRECTORY", dir);                                                    
+    var filename: cstring = iup.getAttribute(filedlg, "VALUE")                        #  IupSetAttributeHandle(filedlg, "PARENTDIALOG", parent_dlg);                                       
+    #  if is_open == 1: open_file(parent_dlg, filename)                               #                                                                                                    
+    #  else: saveas_file(canvas, filename)                                            #  IupPopup(filedlg, IUP_CENTERPARENT, IUP_CENTERPARENT);                                            
+    dir = iup.getAttribute(filedlg, "DIRECTORY")                                      #  if (IupGetInt(filedlg, "STATUS") != -1)                                                           
+    iup.configSetVariableStr(config, "MainWindow", "LastDirectory", dir)              #  {                                                                                                 
+  iup.destroy(filedlg)                                                                #    char* filename = IupGetAttribute(filedlg, "VALUE");                                             
+  return IUP_DEFAULT                                                                  #    if (is_open)                                                                                    
+                                                                                      #      open_file(parent_dlg, filename);                                                              
+                                                                                      #    else                                                                                            
+                                                                                      #      saveas_file(canvas, filename);                                                                
+                                                                                      #                                                                                                    
+                                                                                      #    dir = IupGetAttribute(filedlg, "DIRECTORY");                                                    
+                                                                                      #    IupConfigSetVariableStr(config, "MainWindow", "LastDirectory", dir);                            
+                                                                                      #  }                                                                                                 
+                                                                                      #                                                                                                    
+                                                                                      #  IupDestroy(filedlg);                                                                              
+                                                                                      #  return IUP_DEFAULT;                                                                               
+                                                                                      #}                                                                                                   
 proc save_file*(canvas: PIhandle) =
   var filename: cstring = iup.getAttribute(canvas, "FILENAME")
 #  var image: ptr imImage = cast[ptr imImage](IupGetAttribute(canvas, "IMAGE"))
