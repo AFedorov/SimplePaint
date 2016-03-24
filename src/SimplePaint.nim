@@ -67,7 +67,7 @@ proc open_file*(ih: PIhandle; filename: cstring) =
   echo "open_file"
 
 proc config_recent_cb*(ih: PIhandle): cint =
-  if save_check(ih) == 1:
+  if save_check(ih):
     var filename: cstring = iup.getAttribute(ih, "TITLE")
 # todo    open_file(ih, filename)
   return IUP_DEFAULT
