@@ -29,10 +29,11 @@ proc save_file*(canvas: PIhandle) =
 #  var image: ptr imImage = cast[ptr imImage](IupGetAttribute(canvas, "IMAGE"))
 #  if write_file(filename, image): IupSetAttribute(canvas, "DIRTY", "NO")
 #-------------------------------------------------------------------------------------------------------------------------------------------
-proc save_check(ih: PIhandle): cint =                                                 #int save_check(Ihandle* ih)                                                            
+proc save_check(ih: PIhandle): bool =                                                 #int save_check(Ihandle* ih)                                                            
   var canvas: PIhandle = iup.getDialogChild(ih, "CANVAS")                             #{                                                                                      
-  #STUB iup.setAttribute(canvas, "DIRTY", "YES");
-  echo iup.getInt(canvas, "DIRTY")
+#   STUB iup.setAttribute(canvas, "DIRTY", "YES");
+#   echo iup.getInt(canvas, "DIRTY")
+  result = tue
   if (iup.getInt(canvas, "DIRTY") == 1):                                              #  Ihandle* canvas = IupGetDialogChild(ih, "CANVAS");                                   
     case iup.alarm("Warning", "File not saved! Save it now?", "Yes", "No", "Cancel")  #  if (IupGetInt(canvas, "DIRTY"))                                                      
     of 1:                      ## # save the changes and continue                     #  {                                                                                    
@@ -40,10 +41,10 @@ proc save_check(ih: PIhandle): cint =                                           
     #of 2:                      ## # ignore the changes and continue                  #    {                                                                                  
     #  discard                                                                             #    case 1:  /* save the changes and continue */                                       
     of 3:                      ## # cancel                                            #      save_file(canvas);                                                               
-      return 0                                                                        #      break;                                                                           
+      result = false                                                                  #      break;                                                                           
     else:                                                                             #    case 2:  /* ignore the changes and continue */
       discard                                                                         #      break;                                      
-  return 1                                                                            #    case 3:  /* cancel */                                                              
+                                                                                      #    case 3:  /* cancel */                                                              
                                                                                       #      return 0;                                                                        
                                                                                       #    }                                                                                  
                                                                                       #  }                                                                                    
@@ -52,7 +53,7 @@ proc save_check(ih: PIhandle): cint =                                           
 #-------------------------------------------------------------------------------------------------------------------------------------------
 
 proc item_open_action_cb(item_open: PIhandle): cint {.cdecl.} =       #int item_open_action_cb(Ihandle* item_open)
-  if save_check(item_open) != 1: return IUP_DEFAULT                   #{                                                
+  if !save_check(item_open): return IUP_DEFAULT                   #{                                                
   return select_file(iup.getDialog(item_open), 1)                     #  if (!save_check(item_open))                    
                                                                       #    return IUP_DEFAULT;                          
                                                                       #                                                 
