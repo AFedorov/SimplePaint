@@ -20,7 +20,7 @@
         "taskName": "Debug",
         "suppressTaskName": true,
         "isBuildCommand": true,
-        "args": ["nim", "c", "--linedir:on", "--debuginfo", "--out:bin/${fileBasename}", "src/${fileBasename}"]
+        "args": ["nim", "c", "--linedir:on", "--debuginfo", "--out:../bin/simplepaint.exe", "src/${fileBasename}"]
         },
         {
         "taskName": "Open Browser",
