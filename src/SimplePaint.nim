@@ -1,7 +1,7 @@
 import iup, os, marshal
 
 proc select_file(parent_dlg: PIhandle; is_open: cint): cint =                         #int select_file(Ihandle* parent_dlg, int is_open)                                                   
-  var config: PIhandle = cast[PIhandle](iup.getAttribute(parent_dlg, "CONFIG"))       #{                                                                                                   
+  var config: PIhandle = cast[PIhandle](iup.getAttribute(parent_dlg, "CONFIG"))       #{
   var canvas: PIhandle = iup.getDialogChild(parent_dlg, "CANVAS")                     #  Ihandle* config = (Ihandle*)IupGetAttribute(parent_dlg, "CONFIG");                                
   var dir: cstring = iup.configGetVariableStr(config, "MainWindow", "LastDirectory")  #  Ihandle* canvas = IupGetDialogChild(parent_dlg, "CANVAS");                                        
   var filedlg: PIhandle = iup.fileDlg()                                               #  const char* dir = IupConfigGetVariableStr(config, "MainWindow", "LastDirectory");                 
@@ -84,137 +84,137 @@ proc config_recent_cb*(ih: PIhandle): cint =
 
 proc create_main_dialog*(config: PIhandle): PIhandle =
 #proc create_main_dialog(config: PIhandle): PIhandle =                                # Ihandle* create_main_dialog(Ihandle *config)
-                                                                      # {
-                                                                      #   Ihandle *dlg, *vbox, *canvas, *menu;
-                                                                      #   Ihandle *sub_menu_file, *file_menu, *item_exit, *item_new, *item_open, *item_save, *item_saveas, *item_revert;
-                                                                      #   Ihandle *sub_menu_edit, *edit_menu, *item_copy, *item_paste;
-                                                                      #   Ihandle *btn_copy, *btn_paste, *btn_new, *btn_open, *btn_save;
-                                                                      #   Ihandle *sub_menu_help, *help_menu, *item_help, *item_about;
-                                                                      #   Ihandle *sub_menu_view, *view_menu, *item_toolbar, *item_statusbar;
-                                                                      #   Ihandle *statusbar, *toolbar, *recent_menu, *item_background;
-                                                                      #
-  var canvas = iup.glCanvas(nil)                                      #    canvas = IupGLCanvas(NULL);
-  iup.setAttribute(canvas, "NAME", "CANVAS")                          #   IupSetAttribute(canvas, "NAME", "CANVAS");
-  iup.setAttribute(canvas, "DIRTY", "NO")                             #   IupSetAttribute(canvas, "DIRTY", "NO");
-  iup.setAttribute(canvas, "BUFFER", "DOUBLE")                        #   IupSetAttribute(canvas, "BUFFER", "DOUBLE");
-# todo iup.setCallback(canvas, "ACTION", (Icallback)canvas_action_cb)       #   IupSetCallback(canvas, "ACTION", (Icallback)canvas_action_cb);
-# todo iup.setCallback(canvas, "DROPFILES_CB", (Icallback)dropfiles_cb)     #   IupSetCallback(canvas, "DROPFILES_CB", (Icallback)dropfiles_cb);
-                                                                      #
-  var statusbar = iup.label("(0, 0) = [0   0   0]")                   #   statusbar = IupLabel("(0, 0) = [0   0   0]");
-  iup.setAttribute(statusbar, "NAME", "STATUSBAR")                    #   IupSetAttribute(statusbar, "NAME", "STATUSBAR");
-  iup.setAttribute(statusbar, "EXPAND", "HORIZONTAL")                 #   IupSetAttribute(statusbar, "EXPAND", "HORIZONTAL");
-  iup.setAttribute(statusbar, "PADDING", "10x5")                      #   IupSetAttribute(statusbar, "PADDING", "10x5");
-                                                                      # 
-  var item_new = iup.item("&New\tCtrl+N", nil)                        #   item_new = IupItem("&New\tCtrl+N", NULL);
-  iup.setAttribute(item_new, "IMAGE", "IUP_FileNew")                  #   IupSetAttribute(item_new, "IMAGE", "IUP_FileNew");
-# todo iup.setCallback(item_new, "ACTION", (Icallback)item_new_action_cb)    #   IupSetCallback(item_new, "ACTION", (Icallback)item_new_action_cb);
-  var btn_new = iup.button(nil, nil)                                  #   btn_new = IupButton(NULL, NULL);
-  iup.setAttribute(btn_new, "IMAGE", "IUP_FileNew")                   #   IupSetAttribute(btn_new, "IMAGE", "IUP_FileNew");
-  iup.setAttribute(btn_new, "FLAT", "Yes")                            #   IupSetAttribute(btn_new, "FLAT", "Yes");
-# todo iup.setCallback(btn_new, "ACTION", (Icallback)item_new_action_cb)    #   IupSetCallback(btn_new, "ACTION", (Icallback)item_new_action_cb);
-  iup.setAttribute(btn_new, "TIP", "New (Ctrl+N)")                    #   IupSetAttribute(btn_new, "TIP", "New (Ctrl+N)");
-  iup.setAttribute(btn_new, "CANFOCUS", "No")                         #   IupSetAttribute(btn_new, "CANFOCUS", "No");
-                                                                      # 
-  var item_open = iup.item("&Open...\tCtrl+O", nil)                   #   item_open = IupItem("&Open...\tCtrl+O", NULL);
-  iup.setAttribute(item_open, "IMAGE", "IUP_FileOpen")                #   IupSetAttribute(item_open, "IMAGE", "IUP_FileOpen");
-  discard iup.setCallback(item_open, "ACTION", (Icallback)item_open_action_cb)#  IupSetCallback(item_open, "ACTION", (Icallback)item_open_action_cb);
-  var btn_open = iup.button(nil, nil)                                 #   btn_open = IupButton(NULL, NULL);
-  iup.setAttribute(btn_open, "IMAGE", "IUP_FileOpen")                 #   IupSetAttribute(btn_open, "IMAGE", "IUP_FileOpen");
-  iup.setAttribute(btn_open, "FLAT", "Yes")                           #   IupSetAttribute(btn_open, "FLAT", "Yes");
-  iup.setCallback(btn_open, "ACTION", (Icallback)item_open_action_cb) #   IupSetCallback(btn_open, "ACTION", (Icallback)item_open_action_cb);
-  iup.setAttribute(btn_open, "TIP", "Open (Ctrl+O)")                  #   IupSetAttribute(btn_open, "TIP", "Open (Ctrl+O)");
-  iup.setAttribute(btn_open, "CANFOCUS", "No")                        #   IupSetAttribute(btn_open, "CANFOCUS", "No");
-                                                                      # 
-  var item_save = iup.item("&Save\tCtrl+S", nil)                      #   item_save = IupItem("&Save\tCtrl+S", NULL);
-  iup.setAttribute(item_save, "NAME", "ITEM_SAVE")                    #   IupSetAttribute(item_save, "NAME", "ITEM_SAVE");
-  iup.setAttribute(item_save, "IMAGE", "IUP_FileSave")                #   IupSetAttribute(item_save, "IMAGE", "IUP_FileSave");
-# todo iup.setCallback(item_save, "ACTION", (Icallback)item_save_action_cb)#   IupSetCallback(item_save, "ACTION", (Icallback)item_save_action_cb);
-  var btn_save = iup.button(nil, nil)                                 #   btn_save = IupButton(NULL, NULL);
-  iup.setAttribute(btn_save, "IMAGE", "IUP_FileSave")                 #   IupSetAttribute(btn_save, "IMAGE", "IUP_FileSave");
-  iup.setAttribute(btn_save, "FLAT", "Yes")                           #   IupSetAttribute(btn_save, "FLAT", "Yes");
-# todo iup.setCallback(btn_save, "ACTION", (Icallback)item_save_action_cb) #   IupSetCallback(btn_save, "ACTION", (Icallback)item_save_action_cb);
-  iup.setAttribute(btn_save, "TIP", "Save (Ctrl+S)")                  #   IupSetAttribute(btn_save, "TIP", "Save (Ctrl+S)");
-  iup.setAttribute(btn_save, "CANFOCUS", "No")                        #   IupSetAttribute(btn_save, "CANFOCUS", "No");
-                                                                      # 
-  var item_saveas = iup.item("Save &As...", nil)                      #   item_saveas = IupItem("Save &As...", NULL);
-  iup.setAttribute(item_saveas, "NAME", "ITEM_SAVEAS")                #   IupSetAttribute(item_saveas, "NAME", "ITEM_SAVEAS");
-# todo iup.setCallback(item_saveas, "ACTION", (Icallback)item_saveas_action_cb) #   IupSetCallback(item_saveas, "ACTION", (Icallback)item_saveas_action_cb);
-                                                                      # 
-  var item_revert = iup.item("&Revert", nil)                          #   item_revert = IupItem("&Revert", NULL);
-  iup.setAttribute(item_revert, "NAME", "ITEM_REVERT")                #   IupSetAttribute(item_revert, "NAME", "ITEM_REVERT");
-# todo iup.setCallback(item_revert, "ACTION", (Icallback)item_revert_action_cb) #   IupSetCallback(item_revert, "ACTION", (Icallback)item_revert_action_cb);
-                                                                      # 
-  var item_exit = iup.item("E&xit", nil)                              #   item_exit = IupItem("E&xit", NULL);
-# todo  iup.setCallback(item_exit, "ACTION", (Icallback)item_exit_action_cb)#   IupSetCallback(item_exit, "ACTION", (Icallback)item_exit_action_cb);
-                                                                      # 
-  var item_copy = iup.item("&Copy\tCtrl+C", nil)                      #   item_copy = IupItem("&Copy\tCtrl+C", NULL);
-  iup.setAttribute(item_copy, "NAME", "ITEM_COPY")                    #   IupSetAttribute(item_copy, "NAME", "ITEM_COPY");
-  iup.setAttribute(item_copy, "IMAGE", "IUP_EditCopy")                #   IupSetAttribute(item_copy, "IMAGE", "IUP_EditCopy");
-# todo iup.setCallback(item_copy, "ACTION", (Icallback)item_copy_action_cb)#   IupSetCallback(item_copy, "ACTION", (Icallback)item_copy_action_cb);
-  var btn_copy = iup.button(nil, nil)                                 #   btn_copy = IupButton(NULL, NULL);
-  iup.setAttribute(btn_copy, "IMAGE", "IUP_EditCopy")                 #   IupSetAttribute(btn_copy, "IMAGE", "IUP_EditCopy");
-  iup.setAttribute(btn_copy, "FLAT", "Yes")                           #   IupSetAttribute(btn_copy, "FLAT", "Yes");
-# todo iup.setCallback(btn_copy, "ACTION", (Icallback)item_copy_action_cb) #   IupSetCallback(btn_copy, "ACTION", (Icallback)item_copy_action_cb);
-  iup.setAttribute(btn_copy, "TIP", "Copy (Ctrl+C)")                  #   IupSetAttribute(btn_copy, "TIP", "Copy (Ctrl+C)");
-  iup.setAttribute(btn_copy, "CANFOCUS", "No")                        #   IupSetAttribute(btn_copy, "CANFOCUS", "No");
-                                                                      # 
-  var item_paste = iup.item("&Paste\tCtrl+V", nil)                    #   item_paste = IupItem("&Paste\tCtrl+V", NULL);
-  iup.setAttribute(item_paste, "NAME", "ITEM_PASTE")                  #   IupSetAttribute(item_paste, "NAME", "ITEM_PASTE");
-  iup.setAttribute(item_paste, "IMAGE", "IUP_EditPaste")              #   IupSetAttribute(item_paste, "IMAGE", "IUP_EditPaste");
-# todo iup.setCallback(item_paste, "ACTION", (Icallback)item_paste_action_cb)#   IupSetCallback(item_paste, "ACTION", (Icallback)item_paste_action_cb);
-  var btn_paste = iup.button(nil, nil)                                #   btn_paste = IupButton(NULL, NULL);
-  iup.setAttribute(btn_paste, "IMAGE", "IUP_EditPaste")               #   IupSetAttribute(btn_paste, "IMAGE", "IUP_EditPaste");
-  iup.setAttribute(btn_paste, "FLAT", "Yes")                          #   IupSetAttribute(btn_paste, "FLAT", "Yes");
-# todo iup.setCallback(btn_paste, "ACTION", (Icallback)item_paste_action_cb) #   IupSetCallback(btn_paste, "ACTION", (Icallback)item_paste_action_cb);
-  iup.setAttribute(btn_paste, "TIP", "Paste (Ctrl+V)")                #   IupSetAttribute(btn_paste, "TIP", "Paste (Ctrl+V)");
-  iup.setAttribute(btn_paste, "CANFOCUS", "No")                       #   IupSetAttribute(btn_paste, "CANFOCUS", "No");
-                                                                      # 
-  var item_background = iup.item("&Background...", nil)               #   item_background = IupItem("&Background...", NULL);
+                                                                                      # {
+                                                                                      #   Ihandle *dlg, *vbox, *canvas, *menu;
+                                                                                      #   Ihandle *sub_menu_file, *file_menu, *item_exit, *item_new, *item_open, *item_save, *item_saveas, *item_revert;
+                                                                                      #   Ihandle *sub_menu_edit, *edit_menu, *item_copy, *item_paste;
+                                                                                      #   Ihandle *btn_copy, *btn_paste, *btn_new, *btn_open, *btn_save;
+                                                                                      #   Ihandle *sub_menu_help, *help_menu, *item_help, *item_about;
+                                                                                      #   Ihandle *sub_menu_view, *view_menu, *item_toolbar, *item_statusbar;
+                                                                                      #   Ihandle *statusbar, *toolbar, *recent_menu, *item_background;
+                                                                                      #
+  var canvas = iup.glCanvas(nil)                                                      #    canvas = IupGLCanvas(NULL);
+  iup.setAttribute(canvas, "NAME", "CANVAS")                                          #   IupSetAttribute(canvas, "NAME", "CANVAS");
+  iup.setAttribute(canvas, "DIRTY", "NO")                                             #   IupSetAttribute(canvas, "DIRTY", "NO");
+  iup.setAttribute(canvas, "BUFFER", "DOUBLE")                                        #   IupSetAttribute(canvas, "BUFFER", "DOUBLE");
+# todo iup.setCallback(canvas, "ACTION", (Icallback)canvas_action_cb)                 #   IupSetCallback(canvas, "ACTION", (Icallback)canvas_action_cb);
+# todo iup.setCallback(canvas, "DROPFILES_CB", (Icallback)dropfiles_cb)               #   IupSetCallback(canvas, "DROPFILES_CB", (Icallback)dropfiles_cb);
+                                                                                      #
+  var statusbar = iup.label("(0, 0) = [0   0   0]")                                   #   statusbar = IupLabel("(0, 0) = [0   0   0]");
+  iup.setAttribute(statusbar, "NAME", "STATUSBAR")                                    #   IupSetAttribute(statusbar, "NAME", "STATUSBAR");
+  iup.setAttribute(statusbar, "EXPAND", "HORIZONTAL")                                 #   IupSetAttribute(statusbar, "EXPAND", "HORIZONTAL");
+  iup.setAttribute(statusbar, "PADDING", "10x5")                                      #   IupSetAttribute(statusbar, "PADDING", "10x5");
+                                                                                      # 
+  var item_new = iup.item("&New\tCtrl+N", nil)                                        #   item_new = IupItem("&New\tCtrl+N", NULL);
+  iup.setAttribute(item_new, "IMAGE", "IUP_FileNew")                                  #   IupSetAttribute(item_new, "IMAGE", "IUP_FileNew");
+# todo iup.setCallback(item_new, "ACTION", (Icallback)item_new_action_cb)             #   IupSetCallback(item_new, "ACTION", (Icallback)item_new_action_cb);
+  var btn_new = iup.button(nil, nil)                                                  #   btn_new = IupButton(NULL, NULL);
+  iup.setAttribute(btn_new, "IMAGE", "IUP_FileNew")                                   #   IupSetAttribute(btn_new, "IMAGE", "IUP_FileNew");
+  iup.setAttribute(btn_new, "FLAT", "Yes")                                            #   IupSetAttribute(btn_new, "FLAT", "Yes");
+# todo iup.setCallback(btn_new, "ACTION", (Icallback)item_new_action_cb)              #   IupSetCallback(btn_new, "ACTION", (Icallback)item_new_action_cb);
+  iup.setAttribute(btn_new, "TIP", "New (Ctrl+N)")                                    #   IupSetAttribute(btn_new, "TIP", "New (Ctrl+N)");
+  iup.setAttribute(btn_new, "CANFOCUS", "No")                                         #   IupSetAttribute(btn_new, "CANFOCUS", "No");
+                                                                                      # 
+  var item_open = iup.item("&Open...\tCtrl+O", nil)                                   #   item_open = IupItem("&Open...\tCtrl+O", NULL);
+  iup.setAttribute(item_open, "IMAGE", "IUP_FileOpen")                                #   IupSetAttribute(item_open, "IMAGE", "IUP_FileOpen");
+  discard iup.setCallback(item_open, "ACTION", (Icallback)item_open_action_cb)        #  IupSetCallback(item_open, "ACTION", (Icallback)item_open_action_cb);
+  var btn_open = iup.button(nil, nil)                                                 #   btn_open = IupButton(NULL, NULL);
+  iup.setAttribute(btn_open, "IMAGE", "IUP_FileOpen")                                 #   IupSetAttribute(btn_open, "IMAGE", "IUP_FileOpen");
+  iup.setAttribute(btn_open, "FLAT", "Yes")                                           #   IupSetAttribute(btn_open, "FLAT", "Yes");
+  iup.setCallback(btn_open, "ACTION", (Icallback)item_open_action_cb)                 #   IupSetCallback(btn_open, "ACTION", (Icallback)item_open_action_cb);
+  iup.setAttribute(btn_open, "TIP", "Open (Ctrl+O)")                                  #   IupSetAttribute(btn_open, "TIP", "Open (Ctrl+O)");
+  iup.setAttribute(btn_open, "CANFOCUS", "No")                                        #   IupSetAttribute(btn_open, "CANFOCUS", "No");
+                                                                                      # 
+  var item_save = iup.item("&Save\tCtrl+S", nil)                                      #   item_save = IupItem("&Save\tCtrl+S", NULL);
+  iup.setAttribute(item_save, "NAME", "ITEM_SAVE")                                    #   IupSetAttribute(item_save, "NAME", "ITEM_SAVE");
+  iup.setAttribute(item_save, "IMAGE", "IUP_FileSave")                                #   IupSetAttribute(item_save, "IMAGE", "IUP_FileSave");
+# todo iup.setCallback(item_save, "ACTION", (Icallback)item_save_action_cb)           #   IupSetCallback(item_save, "ACTION", (Icallback)item_save_action_cb);
+  var btn_save = iup.button(nil, nil)                                                 #   btn_save = IupButton(NULL, NULL);
+  iup.setAttribute(btn_save, "IMAGE", "IUP_FileSave")                                 #   IupSetAttribute(btn_save, "IMAGE", "IUP_FileSave");
+  iup.setAttribute(btn_save, "FLAT", "Yes")                                           #   IupSetAttribute(btn_save, "FLAT", "Yes");
+# todo iup.setCallback(btn_save, "ACTION", (Icallback)item_save_action_cb)            #   IupSetCallback(btn_save, "ACTION", (Icallback)item_save_action_cb);
+  iup.setAttribute(btn_save, "TIP", "Save (Ctrl+S)")                                  #   IupSetAttribute(btn_save, "TIP", "Save (Ctrl+S)");
+  iup.setAttribute(btn_save, "CANFOCUS", "No")                                        #   IupSetAttribute(btn_save, "CANFOCUS", "No");
+                                                                                      # 
+  var item_saveas = iup.item("Save &As...", nil)                                      #   item_saveas = IupItem("Save &As...", NULL);
+  iup.setAttribute(item_saveas, "NAME", "ITEM_SAVEAS")                                #   IupSetAttribute(item_saveas, "NAME", "ITEM_SAVEAS");
+# todo iup.setCallback(item_saveas, "ACTION", (Icallback)item_saveas_action_cb)       #   IupSetCallback(item_saveas, "ACTION", (Icallback)item_saveas_action_cb);
+                                                                                      # 
+  var item_revert = iup.item("&Revert", nil)                                          #   item_revert = IupItem("&Revert", NULL);
+  iup.setAttribute(item_revert, "NAME", "ITEM_REVERT")                                #   IupSetAttribute(item_revert, "NAME", "ITEM_REVERT");
+# todo iup.setCallback(item_revert, "ACTION", (Icallback)item_revert_action_cb)       #   IupSetCallback(item_revert, "ACTION", (Icallback)item_revert_action_cb);
+                                                                                      # 
+  var item_exit = iup.item("E&xit", nil)                                              #   item_exit = IupItem("E&xit", NULL);
+# todo  iup.setCallback(item_exit, "ACTION", (Icallback)item_exit_action_cb)          #   IupSetCallback(item_exit, "ACTION", (Icallback)item_exit_action_cb);
+                                                                                      # 
+  var item_copy = iup.item("&Copy\tCtrl+C", nil)                                      #   item_copy = IupItem("&Copy\tCtrl+C", NULL);
+  iup.setAttribute(item_copy, "NAME", "ITEM_COPY")                                    #   IupSetAttribute(item_copy, "NAME", "ITEM_COPY");
+  iup.setAttribute(item_copy, "IMAGE", "IUP_EditCopy")                                #   IupSetAttribute(item_copy, "IMAGE", "IUP_EditCopy");
+# todo iup.setCallback(item_copy, "ACTION", (Icallback)item_copy_action_cb)           #   IupSetCallback(item_copy, "ACTION", (Icallback)item_copy_action_cb);
+  var btn_copy = iup.button(nil, nil)                                                 #   btn_copy = IupButton(NULL, NULL);
+  iup.setAttribute(btn_copy, "IMAGE", "IUP_EditCopy")                                 #   IupSetAttribute(btn_copy, "IMAGE", "IUP_EditCopy");
+  iup.setAttribute(btn_copy, "FLAT", "Yes")                                           #   IupSetAttribute(btn_copy, "FLAT", "Yes");
+# todo iup.setCallback(btn_copy, "ACTION", (Icallback)item_copy_action_cb)            #   IupSetCallback(btn_copy, "ACTION", (Icallback)item_copy_action_cb);
+  iup.setAttribute(btn_copy, "TIP", "Copy (Ctrl+C)")                                  #   IupSetAttribute(btn_copy, "TIP", "Copy (Ctrl+C)");
+  iup.setAttribute(btn_copy, "CANFOCUS", "No")                                        #   IupSetAttribute(btn_copy, "CANFOCUS", "No");
+                                                                                      # 
+  var item_paste = iup.item("&Paste\tCtrl+V", nil)                                    #   item_paste = IupItem("&Paste\tCtrl+V", NULL);
+  iup.setAttribute(item_paste, "NAME", "ITEM_PASTE")                                  #   IupSetAttribute(item_paste, "NAME", "ITEM_PASTE");
+  iup.setAttribute(item_paste, "IMAGE", "IUP_EditPaste")                              #   IupSetAttribute(item_paste, "IMAGE", "IUP_EditPaste");
+# todo iup.setCallback(item_paste, "ACTION", (Icallback)item_paste_action_cb)         #   IupSetCallback(item_paste, "ACTION", (Icallback)item_paste_action_cb);
+  var btn_paste = iup.button(nil, nil)                                                #   btn_paste = IupButton(NULL, NULL);
+  iup.setAttribute(btn_paste, "IMAGE", "IUP_EditPaste")                               #   IupSetAttribute(btn_paste, "IMAGE", "IUP_EditPaste");
+  iup.setAttribute(btn_paste, "FLAT", "Yes")                                          #   IupSetAttribute(btn_paste, "FLAT", "Yes");
+# todo iup.setCallback(btn_paste, "ACTION", (Icallback)item_paste_action_cb)          #   IupSetCallback(btn_paste, "ACTION", (Icallback)item_paste_action_cb);
+  iup.setAttribute(btn_paste, "TIP", "Paste (Ctrl+V)")                                #   IupSetAttribute(btn_paste, "TIP", "Paste (Ctrl+V)");
+  iup.setAttribute(btn_paste, "CANFOCUS", "No")                                       #   IupSetAttribute(btn_paste, "CANFOCUS", "No");
+                                                                                      # 
+  var item_background = iup.item("&Background...", nil)                               #   item_background = IupItem("&Background...", NULL);
 # todo iup.setCallback(item_background, "ACTION", (Icallback)item_background_action_cb);#   IupSetCallback(item_background, "ACTION", (Icallback)item_background_action_cb);
-                                                                      # 
-  var item_toolbar = iup.item("&Toobar", nil)                         #   item_toolbar = IupItem("&Toobar", NULL);
-# todo iup.setCallback(item_toolbar, "ACTION", (Icallback)item_toolbar_action_cb)#   IupSetCallback(item_toolbar, "ACTION", (Icallback)item_toolbar_action_cb);
-  iup.setAttribute(item_toolbar, "VALUE", "ON")                       #   IupSetAttribute(item_toolbar, "VALUE", "ON");
-                                                                      # 
-  var item_statusbar = iup.item("&Statusbar", nil)                    #   item_statusbar = IupItem("&Statusbar", NULL);
-# todo iup.setCallback(item_statusbar, "ACTION", (Icallback)item_statusbar_action_cb)#   IupSetCallback(item_statusbar, "ACTION", (Icallback)item_statusbar_action_cb);
-  iup.setAttribute(item_statusbar, "VALUE", "ON")                     #   IupSetAttribute(item_statusbar, "VALUE", "ON");
-                                                                      # 
-  var item_help = iup.item("&Help...", nil)                           #   item_help = IupItem("&Help...", NULL);
-# todo iup.setCallback(item_help, "ACTION", (Icallback)item_help_action_cb)#   IupSetCallback(item_help, "ACTION", (Icallback)item_help_action_cb);
-                                                                      # 
-  var item_about = iup.item("&About...", nil)                         #   item_about = IupItem("&About...", NULL);
-# todo iup.SetCallback(item_about, "ACTION", (Icallback)item_about_action_cb)#   IupSetCallback(item_about, "ACTION", (Icallback)item_about_action_cb);
-                                                                      # 
-  var recent_menu = iup.menu(nil);                                    #   recent_menu = IupMenu(NULL);
-                                                                      # 
-  var file_menu = iup.menu(                                           #   file_menu = IupMenu(
-    item_new,                                                         #     item_new,
-    item_open,                                                        #     item_open,
-    item_save,                                                        #     item_save,
-    item_saveas,                                                      #     item_saveas,
-    item_revert,                                                      #     item_revert,
-    iup.separator(),                                                  #     IupSeparator(),
-    iup.submenu("Recent &Files", recent_menu),                        #     IupSubmenu("Recent &Files", recent_menu),
-    item_exit,                                                        #     item_exit,
-    nil)                                                              #     NULL);
-  var edit_menu = iup.menu(                                           #   edit_menu = IupMenu(
-    item_copy,                                                        #     item_copy,
-    item_paste,                                                       #     item_paste,
-    nil)                                                              #     NULL);
-  var view_menu = iup.menu(                                           #   view_menu = IupMenu(
-    item_background,                                                  #     item_background,
-    iup.separator(),                                                   #     IupSeparator(),
-    item_toolbar,                                                     #     item_toolbar,
-    item_statusbar,                                                   #     item_statusbar,
-    nil)                                                              #     NULL);
-  var help_menu = iup.menu(                                           #   help_menu = IupMenu(
-    item_help,                                                        #     item_help,
-    item_about,                                                       #     item_about,
-    nil)                                                              #     NULL);
-                                                                      # 
-# todo iup.setCallback(file_menu, "OPEN_CB", (Icallback)file_menu_open_cb) #   IupSetCallback(file_menu, "OPEN_CB", (Icallback)file_menu_open_cb);
-# todo iup.setCallback(edit_menu, "OPEN_CB", (Icallback)edit_menu_open_cb) #   IupSetCallback(edit_menu, "OPEN_CB", (Icallback)edit_menu_open_cb);
+                                                                                      # 
+  var item_toolbar = iup.item("&Toobar", nil)                                         #   item_toolbar = IupItem("&Toobar", NULL);
+# todo iup.setCallback(item_toolbar, "ACTION", (Icallback)item_toolbar_action_cb)     #   IupSetCallback(item_toolbar, "ACTION", (Icallback)item_toolbar_action_cb);
+  iup.setAttribute(item_toolbar, "VALUE", "ON")                                       #   IupSetAttribute(item_toolbar, "VALUE", "ON");
+                                                                                      # 
+  var item_statusbar = iup.item("&Statusbar", nil)                                    #   item_statusbar = IupItem("&Statusbar", NULL);
+# todo iup.setCallback(item_statusbar, "ACTION", (Icallback)item_statusbar_action_cb) #   IupSetCallback(item_statusbar, "ACTION", (Icallback)item_statusbar_action_cb);
+  iup.setAttribute(item_statusbar, "VALUE", "ON")                                     #   IupSetAttribute(item_statusbar, "VALUE", "ON");
+                                                                                      # 
+  var item_help = iup.item("&Help...", nil)                                           #   item_help = IupItem("&Help...", NULL);
+# todo iup.setCallback(item_help, "ACTION", (Icallback)item_help_action_cb)           #   IupSetCallback(item_help, "ACTION", (Icallback)item_help_action_cb);
+                                                                                      # 
+  var item_about = iup.item("&About...", nil)                                         #   item_about = IupItem("&About...", NULL);
+# todo iup.SetCallback(item_about, "ACTION", (Icallback)item_about_action_cb)         #   IupSetCallback(item_about, "ACTION", (Icallback)item_about_action_cb);
+                                                                                      # 
+  var recent_menu = iup.menu(nil);                                                    #   recent_menu = IupMenu(NULL);
+                                                                                      # 
+  var file_menu = iup.menu(                                                           #   file_menu = IupMenu(
+    item_new,                                                                         #     item_new,
+    item_open,                                                                        #     item_open,
+    item_save,                                                                        #     item_save,
+    item_saveas,                                                                      #     item_saveas,
+    item_revert,                                                                      #     item_revert,
+    iup.separator(),                                                                  #     IupSeparator(),
+    iup.submenu("Recent &Files", recent_menu),                                        #     IupSubmenu("Recent &Files", recent_menu),
+    item_exit,                                                                        #     item_exit,
+    nil)                                                                              #     NULL);
+  var edit_menu = iup.menu(                                                           #   edit_menu = IupMenu(
+    item_copy,                                                                        #     item_copy,
+    item_paste,                                                                       #     item_paste,
+    nil)                                                                              #     NULL);
+  var view_menu = iup.menu(                                                           #   view_menu = IupMenu(
+    item_background,                                                                  #     item_background,
+    iup.separator(),                                                                  #     IupSeparator(),
+    item_toolbar,                                                                     #     item_toolbar,
+    item_statusbar,                                                                   #     item_statusbar,
+    nil)                                                                              #     NULL);
+  var help_menu = iup.menu(                                                           #   help_menu = IupMenu(
+    item_help,                                                                        #     item_help,
+    item_about,                                                                       #     item_about,
+    nil)                                                                              #     NULL);
+                                                                                      # 
+# todo iup.setCallback(file_menu, "OPEN_CB", (Icallback)file_menu_open_cb)            #   IupSetCallback(file_menu, "OPEN_CB", (Icallback)file_menu_open_cb);
+# todo iup.setCallback(edit_menu, "OPEN_CB", (Icallback)edit_menu_open_cb)            #   IupSetCallback(edit_menu, "OPEN_CB", (Icallback)edit_menu_open_cb);
                                                                       # 
   var sub_menu_file = iup.submenu("&File", file_menu)                 #   sub_menu_file = IupSubmenu("&File", file_menu);
   var sub_menu_edit = iup.submenu("&Edit", edit_menu)                 #   sub_menu_edit = IupSubmenu("&Edit", edit_menu);
