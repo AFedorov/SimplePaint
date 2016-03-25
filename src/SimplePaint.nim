@@ -1,6 +1,30 @@
 import iup, os, marshal
 
-proc select_file(parent_dlg: PIhandle; is_open: cint): cint =                         #int select_file(Ihandle* parent_dlg, int is_open)                                                   
+proc openFile(ih: PIhandle; filename: cstring) =                                      #void open_file(Ihandle* ih, const char* filename)                                
+  var image: ptr imImage = readFile(filename)                                         #{                                                                                
+  if image:                                                                           #  imImage* image = read_file(filename);                                          
+    var dlg: PIhandle = iup.getDialog(ih)                                             #  if (image)                                                                     
+    var canvas: PIhandle = iup.getDialogChild(dlg, "CANVAS")                          #  {                                                                              
+    var config: PIhandle = cast[PIhandle](iup.getAttribute(canvas, "CONFIG"))         #    Ihandle* dlg = IupGetDialog(ih);                                             
+    var old_image: ptr imImage = cast[ptr imImage](iup.getAttribute(canvas, "IMAGE")) #    Ihandle* canvas = IupGetDialogChild(dlg, "CANVAS");                          
+    # iup.setfAttribute(dlg, "TITLE", "%s - Simple Paint", str_filetitle(filename))   #    Ihandle* config = (Ihandle*)IupGetAttribute(canvas, "CONFIG");                
+    iup.setStrAttribute(canvas, "FILENAME", filename)                                 #    imImage* old_image = (imImage*)IupGetAttribute(canvas, "IMAGE");             
+    iup.setAttribute(canvas, "DIRTY", "NO")                                           #                                                                                 
+    iup.setAttribute(canvas, "IMAGE", cast[cstring](image))                           #    IupSetfAttribute(dlg, "TITLE", "%s - Simple Paint", str_filetitle(filename));
+    iup.update(canvas)                                                                #    IupSetStrAttribute(canvas, "FILENAME", filename);                            
+    if old_image: imImageDestroy(old_image)                                           #    IupSetAttribute(canvas, "DIRTY", "NO");                                      
+    iup.configRecentUpdate(config, filename)                                          #    IupSetAttribute(canvas, "IMAGE", (char*)image);                              
+                                                                                      #                                                                                 
+                                                                                      #    IupUpdate(canvas);                                                           
+                                                                                      #                                                                                 
+                                                                                      #    if (old_image)                                                               
+                                                                                      #      imImageDestroy(old_image);                                                 
+                                                                                      #                                                                                 
+                                                                                      #    IupConfigRecentUpdate(config, filename);                                     
+                                                                                      #  }                                                                              
+                                                                                      #}                                                                                
+
+proc selectFile(parent_dlg: PIhandle; is_open: cint): cint =                          #int select_file(Ihandle* parent_dlg, int is_open)                                                   
   var config: PIhandle = cast[PIhandle](iup.getAttribute(parent_dlg, "CONFIG"))       #{
   var canvas: PIhandle = iup.getDialogChild(parent_dlg, "CANVAS")                     #  Ihandle* config = (Ihandle*)IupGetAttribute(parent_dlg, "CONFIG");                                
   var dir: cstring = iup.configGetVariableStr(config, "MainWindow", "LastDirectory")  #  Ihandle* canvas = IupGetDialogChild(parent_dlg, "CANVAS");                                        
@@ -19,7 +43,7 @@ proc select_file(parent_dlg: PIhandle; is_open: cint): cint =                   
   iup.popup(filedlg, IUP_CENTERPARENT, IUP_CENTERPARENT)                              #  IupSetAttribute(filedlg, "EXTFILTER", "Image Files|*.bmp;*.jpg;*.png;*.tif;*.tga|All Files|*.*|");
   if iup.getInt(filedlg, "STATUS") != - 1:                                            #  IupSetStrAttribute(filedlg, "DIRECTORY", dir);                                                    
     var filename: cstring = iup.getAttribute(filedlg, "VALUE")                        #  IupSetAttributeHandle(filedlg, "PARENTDIALOG", parent_dlg);                                       
-    #  if is_open == 1: open_file(parent_dlg, filename)                               #                                                                                                    
+    if is_open == 1: openFile(parent_dlg, filename)                               #                                                                                                    
     #  else: saveas_file(canvas, filename)                                            #  IupPopup(filedlg, IUP_CENTERPARENT, IUP_CENTERPARENT);                                            
     dir = iup.getAttribute(filedlg, "DIRECTORY")                                      #  if (IupGetInt(filedlg, "STATUS") != -1)                                                           
     iup.configSetVariableStr(config, "MainWindow", "LastDirectory", dir)              #  {                                                                                                 
