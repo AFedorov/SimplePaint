@@ -4,7 +4,7 @@
     "showOutput": "always",
     "isShellCommand": true,
     "args": ["c"],
-    // "windows": {
+    // "windows":  {
     //     "command": "nim",
     //     "showOutput": "always",
     //     "isShellCommand": true
