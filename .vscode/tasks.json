@@ -1,0 +1,35 @@
+{
+    "version": "0.1.0",
+    "command": "nim",
+    "showOutput": "always",
+    "isShellCommand": true,
+    "args": ["c"],
+    // "windows": {
+    //     "command": "nim",
+    //     "showOutput": "always",
+    //     "isShellCommand": true
+    // },
+    "tasks": [
+        {
+            "taskName": "Build for debug",
+            "suppressTaskName": true,
+            "isBuildCommand": false,            
+            "args": ["--lineDir:on", "--debuginfo", "--out:../bin/SimplePaint.exe", "${file}"]
+            // "problemMatcher": "$nim"
+        },
+        {
+            "taskName": "Build for release",
+            "suppressTaskName": true,
+            "isBuildCommand": false,            
+            "args": ["-d:release", "--out:../bin/SimplePaint.exe", "${file}"]
+            // "problemMatcher": "$nim"
+        },
+        {
+            "taskName": "Build for run",            
+            "suppressTaskName": true,
+            "isBuildCommand": false,        
+            "args": ["-r:../bin/SimplePaint.exe", "-d:release", "--out:../bin/SimplePaint.exe", "${file}"]
+            // "problemMatcher": "$tsc"
+        }   
+    ]
+}
