@@ -7,9 +7,11 @@ proc select_file(parent_dlg: PIhandle; is_open: cint): cint =                   
   var filedlg: PIhandle = iup.fileDlg()                                               #  const char* dir = IupConfigGetVariableStr(config, "MainWindow", "LastDirectory");                 
   if is_open == 1:                                                                    #                                                                                                    
     iup.setAttribute(filedlg, "DIALOGTYPE", "OPEN")                                   #  Ihandle* filedlg = IupFileDlg();                                                                  
+    echo iup.getAttribute(filedlg, "DIALOGTYPE")
   else:                                                                               #  if (is_open)                                                                                      
     iup.setAttribute(filedlg, "DIALOGTYPE", "SAVE")                                   #    IupSetAttribute(filedlg, "DIALOGTYPE", "OPEN");                                                 
     iup.setStrAttribute(filedlg, "FILE", iup.getAttribute(canvas, "FILENAME"))        #  else                                                                                              
+    echo $$filedlg
   iup.setAttribute(filedlg, "EXTFILTER",                                              #  {                                                                                                 
                   "Image Files|*.bmp;*.jpg;*.png;*.tif;*.tga|All Files|*.*|")         #    IupSetAttribute(filedlg, "DIALOGTYPE", "SAVE");                                                 
   iup.setStrAttribute(filedlg, "DIRECTORY", dir)                                      #    IupSetStrAttribute(filedlg, "FILE", IupGetAttribute(canvas, "FILENAME"));                       
