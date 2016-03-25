@@ -1,5 +1,30 @@
 import iup, os, marshal
 
+proc read_file(filename: cstring): ptr imImage =                                     #imImage* read_file(const char* filename)                                 
+  var error: cint                                                                     #{                                                                        
+  var image: ptr imImage = imFileImageLoadBitmap(filename, 0, addr(error))            #  int error;                                                             
+  if error:                                                                           #  imImage* image = imFileImageLoadBitmap(filename, 0, &error);           
+    show_file_error(error)                                                            #  if (error)                                                             
+  else:                                                                               #    show_file_error(error);                                              
+    ## # we are going to support only RGB images with no alpha                        #  else                                                                   
+    imImageRemoveAlpha(image)                                                         #  {                                                                      
+    if image.color_space != IM_RGB:                                                   #    /* we are going to support only RGB images with no alpha */          
+      var new_image: ptr imImage = imImageCreateBased(image, - 1, - 1, IM_RGB, - 1)   #    imImageRemoveAlpha(image);                                           
+      imConvertColorSpace(image, new_image)                                           #    if (image->color_space != IM_RGB)                                    
+      imImageDestroy(image)                                                           #    {                                                                    
+      image = new_image                                                               #      imImage* new_image = imImageCreateBased(image, -1, -1, IM_RGB, -1);
+    imImageGetOpenGLData(image, nil)                                                  #      imConvertColorSpace(image, new_image);                             
+  return image                                                                        #      imImageDestroy(image);                                             
+                                                                                      #                                                                         
+                                                                                      #      image = new_image;                                                 
+                                                                                      #    }                                                                    
+                                                                                      #                                                                         
+                                                                                      #    /* create OpenGL compatible data */                                  
+                                                                                      #    imImageGetOpenGLData(image, NULL);                                   
+                                                                                      #  }                                                                      
+                                                                                      #  return image;                                                          
+                                                                                      #}                                                                        
+
 proc openFile(ih: PIhandle; filename: cstring) =                                      #void open_file(Ihandle* ih, const char* filename)                                
   var image: ptr imImage = readFile(filename)                                         #{                                                                                
   if image:                                                                           #  imImage* image = read_file(filename);                                          
@@ -98,9 +123,6 @@ proc item_open_action_cb(item_open: PIhandle): cint {.cdecl.} =                 
 
 proc check_new_file*(dlg: PIhandle) =
   echo "check_new_file"
-
-proc open_file*(ih: PIhandle; filename: cstring) =
-  echo "open_file"
 
 proc config_recent_cb*(ih: PIhandle): cint =
   if save_check(ih):
